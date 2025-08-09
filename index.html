@@ -18,10 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 
     <style>
-        /* ------------------------------------- */
-        /* 1. THEME & COLORS                     */
-        /* ------------------------------------- */
-        :root { /* Default to Dark Azure */
+        :root {
             --color-primary: #0ea5e9; --color-secondary: #6366f1; --color-bg: #0c1425; --color-surface: #151c2e; --color-text: #e2e8f0; --color-text-muted: #94a3b8; --color-border: rgba(226, 232, 240, 0.1); --color-grid: rgba(226, 232, 240, 0.04); --color-glow1: #0ea5e9; --color-glow2: #6366f1; --color-shadow: rgba(0,0,0,0.3);
         }
         [data-theme="dark-gold"]{--color-primary:#f5d100;--color-secondary:#ff8d00;--color-bg:#050505;--color-surface:#111111;--color-text:#f0f0f0;--color-text-muted:#a0a0a0;--color-border:rgba(255,255,255,0.08);--color-grid:rgba(255,255,255,0.04);--color-glow1:#f5d100;--color-glow2:#ff8d00;--color-shadow:rgba(0,0,0,0.25)}
@@ -31,9 +28,6 @@
         [data-theme="dark-mint"]{--color-primary:#10b981;--color-secondary:#2dd4bf;--color-bg:#0a1814;--color-surface:#11201c;--color-text:#e5e7eb;--color-text-muted:#9ca3af;--color-border:rgba(255,255,255,0.08);--color-grid:rgba(255,255,255,0.04);--color-glow1:#10b981;--color-glow2:#2dd4bf;--color-shadow:rgba(0,0,0,0.25)}
         [data-theme="light-mint"]{--color-primary:#059669;--color-secondary:#14b8a6;--color-bg:#f3fcf9;--color-surface:#ffffff;--color-text:#1f2937;--color-text-muted:#6b7280;--color-border:rgba(0,0,0,0.08);--color-grid:rgba(0,0,0,0.04);--color-glow1:#059669;--color-glow2:#14b8a6;--color-shadow:rgba(0,0,0,0.1)}
 
-        /* ------------------------------------- */
-        /* 2. BASE STYLES                        */
-        /* ------------------------------------- */
         html { scroll-behavior: smooth; }
         body { font-family: 'Space Grotesk', sans-serif; background-color: var(--color-bg); color: var(--color-text); transition: background-color 0.5s ease, color 0.5s ease; cursor: none; }
         ::selection { background-color: var(--color-primary); color: var(--color-bg); }
@@ -44,20 +38,14 @@
         :is(a,button,input,textarea,[tabindex]:not([tabindex="-1"])):focus-visible { outline: 5px solid var(--color-secondary); outline-offset: 5px; border-radius: 5px; }
         .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
 
-        /* ------------------------------------- */
-        /* 3. LAYOUT & BACKGROUNDS               */
-        /* ------------------------------------- */
         .noise-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");z-index:-11;pointer-events:none;opacity:.025;}
         body::before{content:'';position:fixed;top:0;left:0;width:100vw;height:100vh;background-image:linear-gradient(var(--color-grid) 1px,transparent 1px),linear-gradient(90deg,var(--color-grid) 1px,transparent 1px);background-size:60px 60px;z-index:-10;pointer-events:none}
         .glow{position:fixed;top:var(--y,0);left:var(--x,0);width:clamp(600px,60vw,1200px);height:clamp(600px,60vw,1200px);background:radial-gradient(circle at center,var(--color-primary) 0,transparent 40%);border-radius:50%;transform:translate(-50%,-50%);filter:blur(120px);opacity:.2;z-index:-9;pointer-events:none;transition:top .7s ease-out,left .7s ease-out,background-color .5s ease}
         .gradient-text{background:linear-gradient(90deg,var(--color-primary),var(--color-secondary),var(--color-primary));background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradient-pan 4s ease infinite}@keyframes gradient-pan{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
 
-        /* ------------------------------------- */
-        /* 4. CUSTOM COMPONENTS                  */
-        /* ------------------------------------- */
         .cursor-dot, .cursor-outline {
             position: fixed;
-            left: var(--cursor-x, -100px); /* Start off-screen */
+            left: var(--cursor-x, -100px);
             top: var(--cursor-y, -100px);
             transform: translate(-50%, -50%);
             border-radius: 50%;
@@ -80,7 +68,6 @@
             transform: translate(-50%, -50%) scale(1.5);
             opacity: 0.2;
         }
-        /* MODIFIED: Changed the text-hover effect to keep the cursor circular, just smaller and slightly more transparent. */
         .cursor-outline.text-hovered {
             transform: translate(-50%, -50%) scale(0.7);
             opacity: 0.15;
@@ -121,9 +108,6 @@
         .form-input:focus{border-color:var(--color-primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--color-primary) 20%,transparent)}
         .form-input::placeholder{color:var(--color-text-muted)}
 
-        /* ------------------------------------- */
-        /* 5. UTILITIES & MODALS                 */
-        /* ------------------------------------- */
         .animate-on-scroll{opacity:0;transform:translateY(30px);transition:opacity .6s ease-out,transform .6s ease-out}
         .animate-on-scroll.is-visible{opacity:1;transform:translateY(0)}
 
@@ -221,10 +205,10 @@
                 <div class="about-logo-glow relative w-64 h-64 md:w-full md:h-auto mx-auto group">
                     <div class="relative rounded-full w-full h-full flex items-center justify-center p-6">
                          <svg class="theme-logo h-full w-full" viewBox="0 0 1080 1080" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
-                            <g transform="matrix(1.83 0 0 1.83 380.38 608.14)"><path class="logo-main-fill" transform=" translate(-1919.45, -666.25)" d="M 2084.5 677 L 2084.5 764.0276 L 2084.5 812 C 2084.5 836 2060.5 860 2036.5 860 L 1816.5 860 L 1809 860 C 1753 860 1736.59798 820.40202 1776.19596 780.80404 L 1792.9724 764.0276 L 2084.5 472.5 L 2084.5 592 L 1929.44296 747.05704 C 1920.95768 755.54232 1924.4724 764.0276 1936.4724 764.0276 L 1973.4724 764.0276 C 1985.4724 764.0276 2005.9576800000002 755.54232 2014.44296 747.05704 z"/></g>
-                            <g transform="matrix(1.83 0 0 1.83 815.54 702.72)"><path class="logo-main-fill" transform=" translate(-2156.5, -717.71)" d="M 2179.45837 582.04163 C 2191.47919 570.0208100000001 2203.5 575 2203.5 592 L 2203.5 764.0276 L 2203.5 860 L 2157.5 860 C 2133.5 860 2109.5 836 2109.5 812 L 2109.5 764.0276 L 2109.5 652 z"/></g>
-                            <g transform="matrix(1.83 0 0 1.83 815.54 230.7)"><path class="logo-accent-fill" transform=" translate(-2156.5, -460.25)" d="M 2109.5 567 L 2109.5 447.5 L 2203.5 353.5 L 2203.5 425 C 2203.5 449 2186.52944 489.97056 2169.55887 506.94113 z"/></g>
-                         </svg>
+                             <g transform="matrix(1.83 0 0 1.83 380.38 608.14)"><path class="logo-main-fill" transform=" translate(-1919.45, -666.25)" d="M 2084.5 677 L 2084.5 764.0276 L 2084.5 812 C 2084.5 836 2060.5 860 2036.5 860 L 1816.5 860 L 1809 860 C 1753 860 1736.59798 820.40202 1776.19596 780.80404 L 1792.9724 764.0276 L 2084.5 472.5 L 2084.5 592 L 1929.44296 747.05704 C 1920.95768 755.54232 1924.4724 764.0276 1936.4724 764.0276 L 1973.4724 764.0276 C 1985.4724 764.0276 2005.9576800000002 755.54232 2014.44296 747.05704 z"/></g>
+                             <g transform="matrix(1.83 0 0 1.83 815.54 702.72)"><path class="logo-main-fill" transform=" translate(-2156.5, -717.71)" d="M 2179.45837 582.04163 C 2191.47919 570.0208100000001 2203.5 575 2203.5 592 L 2203.5 764.0276 L 2203.5 860 L 2157.5 860 C 2133.5 860 2109.5 836 2109.5 812 L 2109.5 764.0276 L 2109.5 652 z"/></g>
+                             <g transform="matrix(1.83 0 0 1.83 815.54 230.7)"><path class="logo-accent-fill" transform=" translate(-2156.5, -460.25)" d="M 2109.5 567 L 2109.5 447.5 L 2203.5 353.5 L 2203.5 425 C 2203.5 449 2186.52944 489.97056 2169.55887 506.94113 z"/></g>
+                          </svg>
                     </div>
                 </div>
             </div>
@@ -273,40 +257,40 @@
                 </div>
             </div>
             <div id="project-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                </div>
+            </div>
         </section>
         
         <section id="process" class="py-20">
              <h2 class="text-3xl md:text-4xl font-bold text-center mb-20 animate-on-scroll">My Creative Process</h2>
              <div class="relative max-w-4xl mx-auto before:content-[''] before:absolute before:left-[1.125rem] md:before:left-1/2 before:top-0 before:bottom-0 before:w-0.5 before:bg-[var(--color-border)] before:-translate-x-1/2">
-                 <div class="relative mb-12 animate-on-scroll">
-                     <div class="absolute left-[1.125rem] md:left-1/2 top-1 w-6 h-6 rounded-full bg-[var(--color-primary)] ring-8 ring-[var(--color-bg)] -translate-x-1/2"></div>
-                     <div class="pl-12 md:ml-auto md:w-5/12 md:pl-12 md:text-left">
-                         <h3 class="text-2xl font-bold mb-1">01. Discovery & Strategy</h3>
-                         <p class="text-sm" style="color: var(--color-text-muted);">At very first I search to get idea of what we are going to make and what audience need.</p>
-                     </div>
-                 </div>
-                 <div class="relative mb-12 animate-on-scroll">
-                     <div class="absolute left-[1.125rem] md:left-1/2 top-1 w-6 h-6 rounded-full bg-[var(--color-primary)] ring-8 ring-[var(--color-bg)] -translate-x-1/2"></div>
-                     <div class="pl-12 md:w-5/12 md:text-right md:pr-12 md:pl-0">
-                         <h3 class="text-2xl font-bold mb-1">02. Concept & Design</h3>
-                         <p class="text-sm" style="color: var(--color-text-muted);">This is where ideas come to life. I took pen paper and perception all combined and create rough sketchs.</p>
-                     </div>
-                 </div>
-                 <div class="relative mb-12 animate-on-scroll">
-                     <div class="absolute left-[1.125rem] md:left-1/2 top-1 w-6 h-6 rounded-full bg-[var(--color-primary)] ring-8 ring-[var(--color-bg)] -translate-x-1/2"></div>
-                     <div class="pl-12 md:ml-auto md:w-5/12 md:pl-12 md:text-left">
-                         <h3 class="text-2xl font-bold mb-1">03. Refinement & Build</h3>
-                         <p class="text-sm" style="color: var(--color-text-muted);">Based on your feedback and my ideation, I refine the rough sketch by polishing every detail until it's perfect and ready.</p>
-                     </div>
-                 </div>
-                 <div class="relative animate-on-scroll">
-                     <div class="absolute left-[1.125rem] md:left-1/2 top-1 w-6 h-6 rounded-full bg-[var(--color-primary)] ring-8 ring-[var(--color-bg)] -translate-x-1/2"></div>
-                     <div class="pl-12 md:w-5/12 md:text-right md:pr-12 md:pl-0">
-                         <h3 class="text-2xl font-bold mb-1">04. Delivery & Launch</h3>
-                         <p class="text-sm" style="color: var(--color-text-muted);">I package all the final assets like mockups for big projects and provide you with everything you need for a successful launch and future use.</p>
-                     </div>
-                 </div>
+                   <div class="relative mb-12 animate-on-scroll">
+                         <div class="absolute left-[1.125rem] md:left-1/2 top-1 w-6 h-6 rounded-full bg-[var(--color-primary)] ring-8 ring-[var(--color-bg)] -translate-x-1/2"></div>
+                         <div class="pl-12 md:ml-auto md:w-5/12 md:pl-12 md:text-left">
+                               <h3 class="text-2xl font-bold mb-1">01. Discovery & Strategy</h3>
+                               <p class="text-sm" style="color: var(--color-text-muted);">At very first I search to get idea of what we are going to make and what audience need.</p>
+                         </div>
+                   </div>
+                   <div class="relative mb-12 animate-on-scroll">
+                         <div class="absolute left-[1.125rem] md:left-1/2 top-1 w-6 h-6 rounded-full bg-[var(--color-primary)] ring-8 ring-[var(--color-bg)] -translate-x-1/2"></div>
+                         <div class="pl-12 md:w-5/12 md:text-right md:pr-12 md:pl-0">
+                               <h3 class="text-2xl font-bold mb-1">02. Concept & Design</h3>
+                               <p class="text-sm" style="color: var(--color-text-muted);">This is where ideas come to life. I took pen paper and perception all combined and create rough sketchs.</p>
+                         </div>
+                   </div>
+                   <div class="relative mb-12 animate-on-scroll">
+                         <div class="absolute left-[1.125rem] md:left-1/2 top-1 w-6 h-6 rounded-full bg-[var(--color-primary)] ring-8 ring-[var(--color-bg)] -translate-x-1/2"></div>
+                         <div class="pl-12 md:ml-auto md:w-5/12 md:pl-12 md:text-left">
+                               <h3 class="text-2xl font-bold mb-1">03. Refinement & Build</h3>
+                               <p class="text-sm" style="color: var(--color-text-muted);">Based on your feedback and my ideation, I refine the rough sketch by polishing every detail until it's perfect and ready.</p>
+                         </div>
+                   </div>
+                   <div class="relative animate-on-scroll">
+                         <div class="absolute left-[1.125rem] md:left-1/2 top-1 w-6 h-6 rounded-full bg-[var(--color-primary)] ring-8 ring-[var(--color-bg)] -translate-x-1/2"></div>
+                         <div class="pl-12 md:w-5/12 md:text-right md:pr-12 md:pl-0">
+                               <h3 class="text-2xl font-bold mb-1">04. Delivery & Launch</h3>
+                               <p class="text-sm" style="color: var(--color-text-muted);">I package all the final assets like mockups for big projects and provide you with everything you need for a successful launch and future use.</p>
+                         </div>
+                   </div>
              </div>
         </section>
         <section id="feedbacks" class="py-20">
@@ -326,31 +310,31 @@
         <section id="faq" class="py-20">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll">Frequently Asked Questions</h2>
             <div class="max-w-3xl mx-auto space-y-4" id="faq-container">
-                </div>
+            </div>
         </section>
 
         <section id="contact" class="py-20 text-center">
             <h2 class="text-4xl md:text-5xl font-bold mb-4 animate-on-scroll">Have a project in mind?</h2>
             <p class="text-lg max-w-2xl mx-auto mb-10 animate-on-scroll" style="transition-delay: 150ms; color: var(--color-text-muted);">I'm currently available for freelance opportunities. If you're looking for a dedicated designer to bring your vision to life, let's talk.</p>
             <form id="contact-form" class="max-w-2xl mx-auto text-left space-y-6 animate-on-scroll" style="transition-delay: 300ms;" novalidate>
-                 <div class="grid sm:grid-cols-2 gap-6">
-                     <div>
-                         <label for="name" class="sr-only">Your Name</label>
-                         <input type="text" id="name" name="name" placeholder="Your Name" required class="form-input w-full p-4 rounded-lg">
-                     </div>
-                     <div>
-                         <label for="email" class="sr-only">Your Email</label>
-                         <input type="email" id="email" name="email" placeholder="Your Email" required class="form-input w-full p-4 rounded-lg">
-                     </div>
-                 </div>
-                 <div>
-                     <label for="message" class="sr-only">Tell me about your project...</label>
-                     <textarea id="message" name="message" placeholder="Tell me about your project..." required rows="6" class="form-input w-full p-4 rounded-lg"></textarea>
-                 </div>
-                 <div class="text-center">
-                     <button type="submit" class="bg-[var(--color-primary)] text-[var(--color-bg)] font-bold text-lg px-12 py-4 rounded-full hover:scale-105 transition-all duration-300 inline-block" style="box-shadow: 0 0 35px color-mix(in srgb, var(--color-primary) 30%, transparent)">Send Message</button>
-                 </div>
-                 <p id="form-status" class="text-center mt-4 h-6"></p>
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <div>
+                        <label for="name" class="sr-only">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required class="form-input w-full p-4 rounded-lg">
+                    </div>
+                    <div>
+                        <label for="email" class="sr-only">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required class="form-input w-full p-4 rounded-lg">
+                    </div>
+                </div>
+                <div>
+                    <label for="message" class="sr-only">Tell me about your project...</label>
+                    <textarea id="message" name="message" placeholder="Tell me about your project..." required rows="6" class="form-input w-full p-4 rounded-lg"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="bg-[var(--color-primary)] text-[var(--color-bg)] font-bold text-lg px-12 py-4 rounded-full hover:scale-105 transition-all duration-300 inline-block" style="box-shadow: 0 0 35px color-mix(in srgb, var(--color-primary) 30%, transparent)">Send Message</button>
+                </div>
+                <p id="form-status" class="text-center mt-4 h-6"></p>
             </form>
         </section>
     </main>
@@ -378,13 +362,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const body = document.body;
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     
-    // --- DATA ---
-    // MODIFIED: Replaced placeholder images with actual design examples.
     const projectData = [
-        { id: 1, category: "branding social", imgSrc: "https://i.ibb.co/v45bWYt9/image.png", title: "Supplement Brand Banner", desc: "Created a stunning banner to advertise a brand's protein powder." },
-        { id: 2, category: "ui-ux social", imgSrc: "https://img.youtube.com/vi/hbn4jRbGaQQ/maxresdefault.jpg", title: "YouTube Thumbnail Design", desc: "Designed many eye-catching thumbnails for popular YouTubers." },
-        { id: 3, category: "branding print", imgSrc: "https://i.ibb.co/b5qZRn4D/Whats-App-Image-2025-08-08-at-23-26-58-b7fd8ac9.jpg", title: "Book Cover Design", desc: "Created an eye-grabbing book cover design to help increase sales." },
-   ];
+        { id: 1, category: "branding social", imgSrc: "https://i.ibb.co/v45bWYt9/image.png", title: "Supplement Brand Banner", desc: "Created a stunning banner to advertise a brand's protein powder.", link: "https://taranutraceuticals.com/" },
+        { id: 2, category: "ui-ux social", imgSrc: "https://img.youtube.com/vi/hbn4jRbGaQQ/maxresdefault.jpg", title: "YouTube Thumbnail Design", desc: "Designed many eye-catching thumbnails for popular YouTubers.", link: "https://www.youtube.com/watch?v=hbn4jRbGaQQ" },
+        { id: 3, category: "branding print", imgSrc: "https://i.ibb.co/b5qZRn4D/Whats-App-Image-2025-08-08-at-23-26-58-b7fd8ac9.jpg", title: "Book Cover Design", desc: "Created an eye-grabbing book cover design to help increase sales.", link: "https://www.goodreads.com/" },
+    ];
 
     const faqData = [
         { q: "What is your design cost looks like?", a: "My Design Cost are easily manageable, feel free to ask below" },
@@ -392,7 +374,6 @@ document.addEventListener('DOMContentLoaded', function() {
         { q: "What files do I receive upon project completion?", a: "You'll receive all the necessary files, whether it is JPG PNG PDF or even SVG, for a big package I will provide the whole folder." }
     ];
 
-    // --- INITIALIZATION ---
     function initializeApp() {
         populateProjects();
         populateFaqs();
@@ -410,7 +391,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- DYNAMIC CONTENT ---
     function populateProjects() {
         const grid = document.getElementById('project-grid');
         if (!grid) return;
@@ -420,7 +400,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="p-6">
                     <h4 class="text-2xl font-bold mb-2">${p.title}</h4>
                     <p class="text-sm font-normal mb-4" style="color: var(--color-text-muted);">${p.desc}</p>
-                    <a href="https://taranutraceuticals.com/" class="font-semibold hover:underline" style="color: var(--color-primary);">Let me see &rarr;</a>
+                    <a href="${p.link}" target="_blank" rel="noopener noreferrer" class="font-semibold hover:underline" style="color: var(--color-primary);">Let me see &rarr;</a>
                 </div>
             </div>`).join('');
     }
@@ -442,9 +422,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const faqItem = questionHeader.parentElement;
                 const wasOpen = faqItem.classList.contains('open');
                 
-                // Optional: Close all other FAQs
-                // container.querySelectorAll('.faq-item.open').forEach(item => item.classList.remove('open'));
-                
                 if (!wasOpen) {
                     faqItem.classList.add('open');
                 } else {
@@ -454,7 +431,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- UI & EFFECTS ---
     function initPreloader() {
         const preloader = document.getElementById('preloader');
         window.addEventListener('load', () => {
@@ -481,7 +457,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         const savedIndex = parseInt(localStorage.getItem('portfolioThemeIndex'), 10);
-        applyTheme(isNaN(savedIndex) ? 2 : savedIndex); // Default to dark-azure
+        applyTheme(isNaN(savedIndex) ? 2 : savedIndex);
     }
 
     function initLiquidGlow() {
@@ -568,24 +544,15 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     }
 
-    // MODIFIED: Improved form submission logic.
     function initContactForm() {
         const form = document.getElementById('contact-form');
         const formStatus = document.getElementById('form-status');
-        // IMPORTANT: You MUST replace this URL with your own Google Apps Script URL.
-        // See the instructions below the code block on how to create one.
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzM_G7YB8KTpkACRcgVbNSbuSbAOgiH88P1sANbqOU_TQGkwYrsvheXHj8mwKdr3sTR/exec';
 
         if (!form || !formStatus) return;
 
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-
-            if (scriptURL === 'https://script.google.com/macros/s/AKfycbzM_G7YB8KTpkACRcgVbNSbuSbAOgiH88P1sANbqOU_TQGkwYrsvheXHj8mwKdr3sTR/exec') {
-                formStatus.textContent = 'Form not configured. Please update URL.';
-                formStatus.style.color = '#f87171'; // red-400
-                return;
-            }
 
             const submitButton = form.querySelector('button[type="submit"]');
             formStatus.textContent = 'Sending...';
@@ -595,23 +562,19 @@ document.addEventListener('DOMContentLoaded', function() {
             fetch(scriptURL, {
                 method: 'POST',
                 body: new FormData(form),
-                mode: 'no-cors' // Use 'no-cors' to prevent CORS errors with Google Scripts
+                mode: 'no-cors'
             })
             .then(() => {
-                // Since 'no-cors' mode results in an opaque response, we can't check response.ok.
-                // We assume success if the fetch promise resolves without a network error.
                 formStatus.textContent = 'Thank you! Your message has been sent.';
-                formStatus.style.color = '#34d399'; // green-400
+                formStatus.style.color = '#34d399';
                 form.reset();
             })
             .catch(error => {
-                // This will catch network errors (e.g., no internet).
                 console.error('Error!', error.message);
                 formStatus.textContent = 'An error occurred. Please try again.';
-                formStatus.style.color = '#f87171'; // red-400
+                formStatus.style.color = '#f87171';
             })
             .finally(() => {
-                // Re-enable the button after a delay, whether it succeeded or failed.
                 setTimeout(() => {
                     formStatus.textContent = '';
                     submitButton.disabled = false;
@@ -625,6 +588,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 </body>
-
 </html>
-
