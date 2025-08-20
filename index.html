@@ -2,7 +2,7 @@
 <html lang="en" data-theme="dark-azure">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
 
     <title>Gurpreet Insha | Graphic & Brand Designer</title>
     <meta name="description" content="Portfolio of Gurpreet Insha, a passionate graphic and brand designer who creates stunning visuals.">
@@ -131,6 +131,7 @@
         }
         .scroller-item { flex-shrink: 0; padding: 1rem; pointer-events: none; /* Prevent interaction with item content while dragging */ }
         .scroller-item a { pointer-events: auto; } /* Re-enable pointer events for links */
+        .scroller-item .faq-question { pointer-events: auto; } /* Re-enable pointer events for FAQ questions */
 
         #projects .scroller-item { width: clamp(320px, 30vw, 400px); }
         #cks .scroller-item { width: clamp(320px, 40vw, 450px); }
@@ -593,7 +594,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return items.map(f => `
                 <div class="scroller-item" ${isHidden ? 'aria-hidden="true"' : ''}>
                     <div class="faq-item card rounded-lg p-6 h-full">
-                        <div class="faq-question flex justify-between items-center cursor-pointer">
+                        <div class="faq-question flex justify-between items-center">
                             <h4 class="text-xl font-semibold">${f.q}</h4>
                             <div class="faq-icon text-2xl" style="color: var(--color-primary);">+</div>
                         </div>
