@@ -8,7 +8,7 @@
     <meta name="description" content="Portfolio of Gurpreet Insha, a passionate graphic and brand designer who creates stunning visuals.">
     <meta name="author" content="Gurpreet Insha">
     <meta name="keywords" content="graphic designer, brand identity, UI/UX, portfolio, logo design, illustration, Gurpreet Insha">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w.3.org/2000/svg' viewBox='0 0 1080 1080'%3E%3Cg transform='matrix(1.83 0 0 1.83 380.38 608.14)'%3E%3Cpath fill='%23000000' transform='translate(-1919.45 -666.25)' d='M2084.5 677v87.028L2084.5 812c0 24-24 48-48 48H1816.5l-7.5.0c-56 0-72.402-39.598-32.804-79.196l16.776-16.776L2084.5 472.5V592L1929.443 747.057c-8.485 8.485-4.97 16.97-6.97 16.97h37c12 0 32.485-8.485 40.97-16.97z'/%3E%3C/g%3E%3Cg transform='matrix(1.83 0 0 1.83 815.54 702.72)'%3E%3Cpath fill='%23000000' transform='translate(-2156.5 -717.71)' d='M2179.458 582.042c12.02-12.02 24.042-7.042 24.042 9.958v172.028V860h-46c-24 0-48-24-48-48v-43.972V652z'/%3E%3C/g%3E%3Cg transform='matrix(1.83 0 0 1.83 815.54 230.7)'%3E%3Cpath fill='%23000000' transform='translate(-2156.5 -460.25)' d='M2109.5 567V447.5L2203.5 353.5V425c0 24-16.97 64.97-33.941 81.941z'/%3E%3C/g%3E%3C/svg%3E">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1080 1080'%3E%3Cg transform='matrix(1.83 0 0 1.83 380.38 608.14)'%3E%3Cpath fill='%23000000' transform='translate(-1919.45 -666.25)' d='M2084.5 677v87.028L2084.5 812c0 24-24 48-48 48H1816.5l-7.5.0c-56 0-72.402-39.598-32.804-79.196l16.776-16.776L2084.5 472.5V592L1929.443 747.057c-8.485 8.485-4.97 16.97-6.97 16.97h37c12 0 32.485-8.485 40.97-16.97z'/%3E%3C/g%3E%3Cg transform='matrix(1.83 0 0 1.83 815.54 702.72)'%3E%3Cpath fill='%23000000' transform='translate(-2156.5 -717.71)' d='M2179.458 582.042c12.02-12.02 24.042-7.042 24.042 9.958v172.028V860h-46c-24 0-48-24-48-48v-43.972V652z'/%3E%3C/g%3E%3Cg transform='matrix(1.83 0 0 1.83 815.54 230.7)'%3E%3Cpath fill='%23000000' transform='translate(-2156.5 -460.25)' d='M2109.5 567V447.5L2203.5 353.5V425c0 24-16.97 64.97-33.941 81.941z'/%3E%3C/g%3E%3C/svg%3E">
 
     <meta property="og:title" content="Gurpreet Insha | Graphic & Brand Designer">
     <meta property="og:description" content="Building memorable brands through strategic and beautiful design.">
@@ -86,11 +86,6 @@
         .filter-btn:hover{color:var(--color-text);border-color:var(--color-primary);background-color:color-mix(in srgb,var(--color-primary) 10%,transparent)}
         .filter-btn.active{color:var(--color-bg);background-color:var(--color-primary);border-color:var(--color-primary)}
         
-        .faq-item .faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease-out,padding .4s ease-out;padding-top:0;padding-bottom:0}
-        .faq-item.open .faq-answer{max-height:500px;padding-top:1rem}
-        .faq-item .faq-icon{transition:transform .4s ease}
-        .faq-item.open .faq-icon{transform:rotate(45deg)}
-
         .form-input{background-color:color-mix(in srgb,var(--color-surface) 50%,transparent);border:1px solid var(--color-border);color:var(--color-text);transition:border-color .3s ease,box-shadow .3s ease}
         .form-input:focus{border-color:var(--color-primary);}
         .form-input::placeholder{color:var(--color-text-muted)}
@@ -111,31 +106,30 @@
         #process-line { transform: scaleY(0); transform-origin: top; transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1); }
         #process-line.is-visible { transform: scaleY(1); }
 
-        #back-to-top{position:fixed;bottom:20px;right:20px;width:50px;height:50px;background-color:var(--color-primary);color:var(--color-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:100;opacity:0;visibility:hidden;transform:translateY(20px);transition:all .3s ease;box-shadow:0 4px 15px var(--color-shadow)}
+        #back-to-top{position:fixed;bottom:20px;right:20px;width:50px;height:50px;background-color:var(--color-primary);color:var(--color-bg);border-radius:50%;display:flex;align-items:center;justify:content:center;z-index:100;opacity:0;visibility:hidden;transform:translateY(20px);transition:all .3s ease;box-shadow:0 4px 15px var(--color-shadow)}
         #back-to-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
         #back-to-top:hover{transform:scale(1.1) rotate(-5deg)}
         
         .scroller-container { position: relative; }
         .scroller { 
-            overflow: hidden; 
+            overflow-x: auto; 
             -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); 
             mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); 
             cursor: grab; 
             user-select: none; /* Prevent text selection while dragging */
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
         }
-        .scroller:active { cursor: grabbing; }
+        .scroller::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
+        .scroller.active { cursor: grabbing; }
         .scroller__track { 
             display: flex; 
             width: max-content; 
-            /* REMOVED CSS ANIMATION - Now controlled by JavaScript */
         }
-        .scroller-item { flex-shrink: 0; padding: 1rem; pointer-events: none; /* Prevent interaction with item content while dragging */ }
-        .scroller-item a { pointer-events: auto; } /* Re-enable pointer events for links */
-        .scroller-item .faq-question { pointer-events: auto; } /* Re-enable pointer events for FAQ questions */
-
+        .scroller-item { flex-shrink: 0; padding: 1rem; }
+        
         #projects .scroller-item { width: clamp(320px, 30vw, 400px); }
         #cks .scroller-item { width: clamp(320px, 40vw, 450px); }
-        #faq .scroller-item { width: clamp(320px, 85vw, 500px); }
         
         .scroller-btn {
             position: absolute; top: 50%; z-index: 10;
@@ -188,7 +182,6 @@
         #lightbox-overlay.visible #lightbox-image {
             transform: scale(1);
         }
-
     </style>
 </head>
 <body class="antialiased">
@@ -210,7 +203,7 @@
     </div>
     
     <header class="fixed inset-x-0 top-0 z-50 p-2 md:p-4">
-        <div class="container mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center backdrop-blur-lg rounded-2xl border" style="background-color: color-mix(in srgb, var(--color-surface) 40%, transparent); border-color: var(--color-border); box-shadow: 0 8px 32px 0 var(--color-shadow);">
+        <div class="container mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center backdrop-blur-lg rounded-full border" style="background-color: color-mix(in srgb, var(--color-surface) 40%, transparent); border-color: var(--color-border); box-shadow: 0 8px 32px 0 var(--color-shadow);">
             <a href="#" class="flex items-center space-x-3">
                 <svg class="theme-logo h-10 w-10 shrink-0" viewBox="0 0 1080 1080" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
                     <g transform="matrix(1.83 0 0 1.83 380.38 608.14)"><path class="logo-main-fill" transform=" translate(-1919.45, -666.25)" d="M 2084.5 677 L 2084.5 764.0276 L 2084.5 812 C 2084.5 836 2060.5 860 2036.5 860 L 1816.5 860 L 1809 860 C 1753 860 1736.59798 820.40202 1776.19596 780.80404 L 1792.9724 764.0276 L 2084.5 472.5 L 2084.5 592 L 1929.44296 747.05704 C 1920.95768 755.54232 1924.4724 764.0276 1936.4724 764.0276 L 1973.4724 764.0276 C 1985.4724 764.0276 2005.9576800000002 755.54232 2014.44296 747.05704 z"/></g>
@@ -228,8 +221,7 @@
                     <a href="#services" class="nav-link">Services</a>
                     <a href="#projects" class="nav-link">Work</a>
                     <a href="#process" class="nav-link">Process</a>
-                    <a href="#cks" class="nav-link">cks</a>
-                    <a href="#faq" class="nav-link">FAQs</a>
+                    <a href="#cks" class="nav-link">Clients</a>
                     <a href="#contact" class="nav-link">Contact</a>
                 </nav>
                 <button id="theme-cycle-btn" aria-label="Cycle through color themes" class="w-10 h-10 flex items-center justify-center rounded-full text-[var(--color-text-muted)] bg-[var(--color-surface)] border border-[var(--color-border)] transition-transform duration-300 hover:scale-110">
@@ -247,8 +239,7 @@
         <a href="#services" class="mobile-nav-link text-3xl font-bold">Services</a>
         <a href="#projects" class="mobile-nav-link text-3xl font-bold">Work</a>
         <a href="#process" class="mobile-nav-link text-3xl font-bold">Process</a>
-        <a href="#cks" class="mobile-nav-link text-3xl font-bold">cks</a>
-        <a href="#faq" class="mobile-nav-link text-3xl font-bold">FAQs</a>
+        <a href="#cks" class="mobile-nav-link text-3xl font-bold">Clients</a>
         <a href="#contact" class="mobile-nav-link text-3xl font-bold">Contact</a>
     </div>
 
@@ -367,7 +358,7 @@
                             <div class="absolute left-[1.125rem] md:left-1/2 top-1 w-6 h-6 rounded-full bg-[var(--color-primary)] ring-8 ring-[var(--color-bg)] -translate-x-1/2"></div>
                             <div class="pl-12 md:ml-auto md:w-5/12 md:pl-12 md:text-left">
                                 <h3 class="text-2xl font-bold mb-1">03. Refinement & Build</h3>
-                                <p class="text-sm font-light" style="color: var(--color-text-muted);">Using your ck, we'll collaborate to refine and perfect the chosen design until it aligns perfectly with your vision.</p>
+                                <p class="text-sm font-light" style="color: var(--color-text-muted);">Using your feedback, we'll collaborate to refine and perfect the chosen design until it aligns perfectly with your vision.</p>
                             </div>
                         </div>
                         <div class="relative animate-on-scroll">
@@ -387,15 +378,6 @@
             <div class="scroller-container">
                 <div class="scroller">
                     <div class="scroller__track" id="ck-container"></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq" class="py-20">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll">Frequently Asked Questions</h2>
-            <div class="scroller-container">
-                <div class="scroller">
-                    <div class="scroller__track" id="faq-container"></div>
                 </div>
             </div>
         </section>
@@ -516,25 +498,16 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 5, category: "ui-ux", imgSrc: "https://i.ibb.co/WWBk102n/Whats-App-Image-2025-08-19-at-23-07-19-8a97194d.jpg", title: "Portfolio Website UI", desc: "A sleek and modern user interface designed for a creative portfolio website.", link: "#" },
         { id: 6, category: "branding print", imgSrc: "https://i.ibb.co/b5qZRn4D/Whats-App-Image-2025-08-08-at-23-26-58-b7fd8ac9.jpg", title: "Book Cover Design", desc: "Designed a compelling book cover meant to capture attention on a crowded shelf and boost sales.", link: "#" },
     ];
-
-    const faqData = [
-        { q: "What does your pricing structure look like?", a: "My rates are based on the project's scope. I provide a detailed, no-obligation quote after we discuss your specific needs. Just reach out using the form below!" },
-        { q: "How long does a typical project take?", a: "Timelines vary. A simple graphic might be done in a day, while a full branding package could take a few weeks. I'll provide a clear timeline upfront once your project is scoped." },
-        { q: "What files will I receive?", a: "You'll receive a full package of assets for both web and print. This typically includes JPG, PNG, PDF, and the original source files (like SVG or AI), all neatly organized." },
-        { q: "How do you handle revisions?", a: "Collaboration is key! Every project includes a set number of revision rounds at key stages. We'll work together to make sure you absolutely love the final design." },
-        { q: "What do you need from me to get started?", a: "All I need to get started is a clear brief outlining your project goals, target audience, and any initial ideas you have. The more information you share, the better I can bring your vision to life." }
-    ];
     
     const ckData = [
         { text: "Working with Gurpreet is like working with my own brother. He understands every single point of my idea and brings it to life perfectly.", author: "- Abhi Garg, Business Owner" },
         { text: "Working with Gurpreet was a fantastic experience. He delivered a superb logo and banner, and I'm thrilled with the outcome.", author: "- Ashutosh Chaudhary, YouTuber" },
-        { text: "I had a great experience with Gurpreet. The final design was beyond my expectations. He was professional, listened to my ck, and delivered a great result. Looking forward to working with him again.", author: "- Priyank Tyagi, Fitness Influencer" },
+        { text: "I had a great experience with Gurpreet. The final design was beyond my expectations. He was professional, listened to my feedback, and delivered a great result. Looking forward to working with him again.", author: "- Priyank Tyagi, Fitness Influencer" },
         { text: "Gurpreet's thumbnails and banners are amazing. Working with him has been my best experience, and he always delivers top-quality work.", author: "- Aditya Jain, YouTuber" }
     ];
 
     function initializeApp() {
         populateProjects(projectData);
-        populateFaqs();
         populatecks();
         initPreloader();
         initScrollAnimations();
@@ -545,7 +518,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initThemeSwitcher();
         initReadingFocus();
         initLightbox();
-        initAdvancedScrollers();
+        initManualScrollers(); // Replaced the old scroller function
 
         if (!isTouchDevice) {
             initCustomCursor();
@@ -556,169 +529,102 @@ document.addEventListener('DOMContentLoaded', function() {
     function populateProjects(data) {
         const container = document.getElementById('project-grid');
         if (!container) return;
-        const createHtml = (items, isHidden = false) => {
-            return items.map(p => `
-                <div class="scroller-item" ${isHidden ? 'aria-hidden="true"' : ''}>
-                    <div class="card rounded-2xl overflow-hidden h-full">
-                        <img src="${p.imgSrc}" alt="${p.title}" class="w-full h-72 object-cover" loading="lazy">
-                        <div class="p-6">
-                            <h4 class="text-2xl font-bold mb-2">${p.title}</h4>
-                            <p class="text-sm font-normal mb-4" style="color: var(--color-text-muted);">${p.desc}</p>
-                            <a href="${p.link}" data-lightbox-src="${p.imgSrc}" class="lightbox-trigger font-semibold hover:underline" style="color: var(--color-primary);">Let me see &rarr;</a>
-                        </div>
+        container.innerHTML = data.map(p => `
+            <div class="scroller-item">
+                <div class="card rounded-2xl overflow-hidden h-full group">
+                    <a href="${p.link}" data-lightbox-src="${p.imgSrc}" class="lightbox-trigger block overflow-hidden">
+                        <img src="${p.imgSrc}" alt="${p.title}" class="w-full h-72 object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy">
+                    </a>
+                    <div class="p-6">
+                        <h4 class="text-2xl font-bold mb-2">${p.title}</h4>
+                        <p class="text-sm font-normal mb-4" style="color: var(--color-text-muted);">${p.desc}</p>
+                        <a href="${p.link}" data-lightbox-src="${p.imgSrc}" class="lightbox-trigger font-semibold hover:underline" style="color: var(--color-primary);">Let me see &rarr;</a>
                     </div>
-                </div>`).join('');
-        };
-        container.innerHTML = createHtml(data) + createHtml(data, true);
+                </div>
+            </div>`).join('');
     }
     
     function populatecks() {
         const container = document.getElementById('ck-container');
         if (!container) return;
-        const createHtml = (items, isHidden = false) => {
-            return items.map(f => `
-                <div class="scroller-item" ${isHidden ? 'aria-hidden="true"' : ''}>
-                    <div class="card p-8 rounded-2xl h-full">
-                        <p class="mb-6 italic leading-relaxed font-normal" style="color: var(--color-text-muted);">"${f.text}"</p>
-                        <p class="font-bold text-right" style="color: var(--color-primary);">${f.author}</p>
-                    </div>
-                </div>`).join('');
-        };
-        container.innerHTML = createHtml(ckData) + createHtml(ckData, true);
-    }
-
-    function populateFaqs() {
-        const container = document.getElementById('faq-container');
-        if (!container) return;
-        const createHtml = (items, isHidden = false) => {
-            return items.map(f => `
-                <div class="scroller-item" ${isHidden ? 'aria-hidden="true"' : ''}>
-                    <div class="faq-item card rounded-lg p-6 h-full">
-                        <div class="faq-question flex justify-between items-center cursor-pointer">
-                            <h4 class="text-xl font-semibold">${f.q}</h4>
-                            <div class="faq-icon text-2xl" style="color: var(--color-primary);">+</div>
-                        </div>
-                        <div class="faq-answer"><p class="text-sm font-normal leading-relaxed" style="color: var(--color-text-muted);">${f.a}</p></div>
-                    </div>
-                </div>`).join('');
-        };
-        container.innerHTML = createHtml(faqData) + createHtml(faqData, true);
-        container.addEventListener('click', (e) => {
-            const questionHeader = e.target.closest('.faq-question');
-            if (questionHeader) {
-                const faqItem = questionHeader.closest('.faq-item');
-                faqItem.classList.toggle('open');
-            }
-        });
+        container.innerHTML = ckData.map(f => `
+            <div class="scroller-item">
+                <div class="card p-8 rounded-2xl h-full">
+                    <p class="mb-6 italic leading-relaxed font-normal" style="color: var(--color-text-muted);">"${f.text}"</p>
+                    <p class="font-bold text-right" style="color: var(--color-primary);">${f.author}</p>
+                </div>
+            </div>`).join('');
     }
     
-    // NEW: Re-engineered scroller logic for smooth, interruptible, infinite scrolling with inertia.
-    function initAdvancedScrollers() {
+    function initManualScrollers() {
         document.querySelectorAll('.scroller-container').forEach(container => {
             const scroller = container.querySelector('.scroller');
             const track = container.querySelector('.scroller__track');
+            const prevBtn = container.querySelector('.scroller-btn--prev');
+            const nextBtn = container.querySelector('.scroller-btn--next');
+            
             if (!scroller || !track) return;
 
-            let direction = -1; // -1 for left, 1 for right
+            let isDown = false;
+            let startX;
+            let scrollLeft;
 
-            let state = {
-                isInteracting: false,
-                isDragging: false,
-                startX: 0,
-                currentX: 0,
-                velocity: 0,
-                rafId: null,
-                lastTime: 0,
-                lastX: 0,
+            const updateButtonStates = () => {
+                if (!prevBtn || !nextBtn) return;
+                // Add a small tolerance to account for sub-pixel rendering
+                const tolerance = 1;
+                const maxScrollLeft = track.scrollWidth - scroller.clientWidth;
+                prevBtn.disabled = scroller.scrollLeft <= 0;
+                nextBtn.disabled = scroller.scrollLeft >= maxScrollLeft - tolerance;
             };
+            
+            scroller.addEventListener('scroll', updateButtonStates);
 
-            const autoScrollSpeed = 0.4;
-            const friction = 0.95;
-            let interactionTimeout;
-
-            function update() {
-                const now = performance.now();
-                const deltaTime = state.lastTime ? (now - state.lastTime) / (1000 / 60) : 1;
-                state.lastTime = now;
-
-                if (!state.isInteracting && !state.isDragging) {
-                    state.currentX += autoScrollSpeed * direction * deltaTime;
-                }
-                
-                if (Math.abs(state.velocity) > 0.1) {
-                    state.currentX += state.velocity * deltaTime;
-                    state.velocity *= Math.pow(friction, deltaTime);
-                }
-
-                const boundary = track.scrollWidth / 2;
-                if (direction === -1) {
-                    if (state.currentX < -boundary) state.currentX += boundary;
-                    if (state.currentX > 0) state.currentX -= boundary;
-                } else {
-                    if (state.currentX > boundary) state.currentX -= boundary;
-                    if (state.currentX < 0) state.currentX += boundary;
-                }
-                
-                track.style.transform = `translateX(${state.currentX}px)`;
-                state.rafId = requestAnimationFrame(update);
-            }
-
-            function startInteraction(x) {
-                clearTimeout(interactionTimeout);
-                state.isInteracting = true;
-                state.startX = x;
-                state.velocity = 0;
-                state.lastX = x;
-            }
-
-            function endInteraction() {
-                state.isDragging = false;
-                clearTimeout(interactionTimeout);
-                interactionTimeout = setTimeout(() => {
-                    state.isInteracting = false;
-                }, 2000);
-            }
-
-            function move(x) {
-                if (!state.isDragging) return;
-                const deltaX = x - state.lastX;
-                state.velocity = deltaX;
-                state.currentX += deltaX;
-                state.lastX = x;
-            }
-
-            // Mouse Events
             scroller.addEventListener('mousedown', (e) => {
+                isDown = true;
+                scroller.classList.add('active');
+                startX = e.pageX - scroller.offsetLeft;
+                scrollLeft = scroller.scrollLeft;
+            });
+
+            scroller.addEventListener('mouseleave', () => {
+                isDown = false;
+                scroller.classList.remove('active');
+            });
+
+            scroller.addEventListener('mouseup', () => {
+                isDown = false;
+                scroller.classList.remove('active');
+            });
+
+            scroller.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
                 e.preventDefault();
-                startInteraction(e.pageX);
-                state.isDragging = true;
-            });
-            window.addEventListener('mousemove', (e) => move(e.pageX));
-            window.addEventListener('mouseup', () => {
-                if (state.isDragging) endInteraction();
-                state.isDragging = false;
+                const x = e.pageX - scroller.offsetLeft;
+                const walk = (x - startX) * 2; // the *2 makes it feel more responsive
+                scroller.scrollLeft = scrollLeft - walk;
+                updateButtonStates(); // Update buttons during drag
             });
 
-            // Touch Events - Differentiates between tap and drag
-            scroller.addEventListener('touchstart', (e) => {
-                startInteraction(e.touches[0].pageX);
-                state.isDragging = false;
-            }, { passive: true });
-            
-            scroller.addEventListener('touchmove', (e) => {
-                if (Math.abs(e.touches[0].pageX - state.startX) > 10) {
-                    state.isDragging = true;
-                }
-                move(e.touches[0].pageX);
-            }, { passive: true });
-            
-            scroller.addEventListener('touchend', () => {
-                if (state.isDragging) {
-                    endInteraction();
-                }
-            });
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => {
+                    const firstItem = track.querySelector('.scroller-item');
+                    if(firstItem) {
+                        scroller.scrollBy({ left: -firstItem.offsetWidth, behavior: 'smooth' });
+                    }
+                });
 
-            update();
+                nextBtn.addEventListener('click', () => {
+                    const firstItem = track.querySelector('.scroller-item');
+                    if(firstItem) {
+                        scroller.scrollBy({ left: firstItem.offsetWidth, behavior: 'smooth' });
+                    }
+                });
+            }
+            
+            // Initial state check for buttons
+            setTimeout(updateButtonStates, 100); 
+            window.addEventListener('resize', updateButtonStates);
         });
     }
 
@@ -743,7 +649,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (trigger) {
                 e.preventDefault();
                 const imageSrc = trigger.getAttribute('data-lightbox-src');
-                openLightbox(imageSrc);
+                if (imageSrc) openLightbox(imageSrc);
             }
         });
         
@@ -833,6 +739,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const filterValue = button.dataset.filter;
             const filteredData = filterValue === '*' ? projectData : projectData.filter(p => p.category.includes(filterValue));
             populateProjects(filteredData);
+            // Re-initialize scroller functionality for the new content
+            initManualScrollers();
         });
     }
 
