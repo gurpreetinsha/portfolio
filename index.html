@@ -23,14 +23,13 @@
             --color-primary: #0ea5e9; --color-secondary: #6366f1; --color-bg: #0c1425; --color-surface: #151c2e; --color-text: #e2e8f0; --color-text-muted: #94a3b8; --color-border: rgba(226, 232, 240, 0.1); --color-grid: rgba(226, 232, 240, 0.04); --color-glow1: #0ea5e9; --color-glow2: #6366f1; --color-shadow: rgba(0,0,0,0.3);
         }
         [data-theme="dark-gold"]{--color-primary:#f5d100;--color-secondary:#ff8d00;--color-bg:#050505;--color-surface:#111111;--color-text:#f0f0f0;--color-text-muted:#a0a0a0;--color-border:rgba(255,255,255,0.08);--color-grid:rgba(255,255,255,0.04);--color-glow1:#f5d100;--color-glow2:#ff8d00;--color-shadow:rgba(0,0,0,0.25)}
-        [data-theme="light-gold"]{--color-primary:#D97706;--color-secondary:#F59E0B;--color-bg:#f5f5f5;--color-surface:#ffffff;--color-text:#1f2937;--color-text-muted:#6b7280;--color-border:rgba(0,0,0,0.08);--color-grid:rgba(0,0,0,0.04);--color-glow1:#D97706;--color-glow2:#F59E0B;--color-shadow:rgba(0,0,0,0.1)}
-        [data-theme="dark-azure"]{--color-primary:#0ea5e9;--color-secondary:#6366f1;--color-bg:#0c1425;--color-surface:#151c2e;--color-text:#e2e8f0;--color-text-muted:#94a3b8;--color-border:rgba(226, 232, 240,0.1);--color-grid:rgba(226, 232, 240,0.04);--color-glow1:#0ea5e9;--color-glow2:#6366f1;--color-shadow:rgba(0,0,0,0.3)}
-        [data-theme="light-azure"]{--color-primary:#0284c7;--color-secondary:#4f46e5;--color-bg:#f5f5f5;--color-surface:#ffffff;--color-text:#1e293b;--color-text-muted:#64748b;--color-border:rgba(0,0,0,0.08);--color-grid:rgba(0,0,0,0.04);--color-glow1:#0284c7;--color-glow2:#4f46e5;--color-shadow:rgba(0,0,0,0.1)}
         [data-theme="dark-mint"]{--color-primary:#10b981;--color-secondary:#2dd4bf;--color-bg:#0a1814;--color-surface:#11201c;--color-text:#e5e7eb;--color-text-muted:#9ca3af;--color-border:rgba(255,255,255,0.08);--color-grid:rgba(255,255,255,0.04);--color-glow1:#10b981;--color-glow2:#2dd4bf;--color-shadow:rgba(0,0,0,0.25)}
+        [data-theme="dark-azure"]{--color-primary:#0ea5e9;--color-secondary:#6366f1;--color-bg:#0c1425;--color-surface:#151c2e;--color-text:#e2e8f0;--color-text-muted:#94a3b8;--color-border:rgba(226, 232, 240,0.1);--color-grid:rgba(226, 232, 240,0.04);--color-glow1:#0ea5e9;--color-glow2:#6366f1;--color-shadow:rgba(0,0,0,0.3)}
+        [data-theme="light-gold"]{--color-primary:#D97706;--color-secondary:#F59E0B;--color-bg:#f5f5f5;--color-surface:#ffffff;--color-text:#1f2937;--color-text-muted:#6b7280;--color-border:rgba(0,0,0,0.08);--color-grid:rgba(0,0,0,0.04);--color-glow1:#D97706;--color-glow2:#F59E0B;--color-shadow:rgba(0,0,0,0.1)}
         [data-theme="light-mint"]{--color-primary:#059669;--color-secondary:#14b8a6;--color-bg:#f5f5f5;--color-surface:#ffffff;--color-text:#1f2937;--color-text-muted:#6b7280;--color-border:rgba(0,0,0,0.08);--color-grid:rgba(0,0,0,0.04);--color-glow1:#059669;--color-glow2:#14b8a6;--color-shadow:rgba(0,0,0,0.1)}
-
+        [data-theme="light-azure"]{--color-primary:#0284c7;--color-secondary:#4f46e5;--color-bg:#f5f5f5;--color-surface:#ffffff;--color-text:#1e293b;--color-text-muted:#64748b;--color-border:rgba(0,0,0,0.08);--color-grid:rgba(0,0,0,0.04);--color-glow1:#0284c7;--color-glow2:#4f46e5;--color-shadow:rgba(0,0,0,0.1)}
+        
         html { scroll-behavior: smooth; }
-        /* MODIFIED: Updated font-family to Space Grotesk */
         body { font-family: 'Space Grotesk', sans-serif; background-color: var(--color-bg); color: var(--color-text); transition: background-color 0.5s ease, color 0.5s ease; cursor: none; }
         ::selection { background-color: var(--color-primary); color: var(--color-bg); }
         body::-webkit-scrollbar { display: none; }
@@ -38,7 +37,6 @@
         h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--color-text); }
         p { font-weight: 400; }
         
-        /* IMPROVEMENT: Added transition for a smoother focus effect */
         :is(a,button,input,textarea,[tabindex]:not([tabindex="-1"])):focus-visible {
             outline: none;
             box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 35%, transparent);
@@ -117,9 +115,10 @@
         #back-to-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
         #back-to-top:hover{transform:scale(1.1) rotate(-5deg)}
         
+        .scroller-container { position: relative; }
         .scroller { overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); }
-        .scroller__track { display: flex; width: max-content; animation: scroll 60s linear infinite; }
-        .scroller:hover .scroller__track { animation-play-state: paused; }
+        .scroller__track { display: flex; width: max-content; animation: scroll 60s linear infinite; transition: transform 0.5s ease; }
+        .scroller:hover .scroller__track, .scroller__track.is-paused { animation-play-state: paused; }
         .scroller__track--right { animation-direction: reverse; }
         .scroller-item { flex-shrink: 0; padding: 1rem; }
         #projects .scroller-item { width: clamp(320px, 30vw, 400px); }
@@ -129,6 +128,25 @@
         #feedbacks .scroller__track { animation-duration: 70s; }
         #faq .scroller__track { animation-duration: 80s; }
         @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        
+        .scroller-btn {
+            position: absolute; top: 50%; z-index: 10;
+            width: 44px; height: 44px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            background-color: color-mix(in srgb, var(--color-surface) 50%, transparent);
+            border: 1px solid var(--color-border);
+            color: var(--color-text-muted);
+            backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+            cursor: pointer; transition: all 0.3s ease;
+        }
+        .scroller-btn:hover { border-color: var(--color-primary); color: var(--color-primary); transform: scale(1.1); }
+        .scroller-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: scale(1); }
+        .scroller-btn--prev { left: -16px; transform: translateY(-50%); }
+        .scroller-btn--next { right: -16px; transform: translateY(-50%); }
+        @media (max-width: 768px) {
+            .scroller-btn { display: none; }
+        }
 
         body.lightbox-open { overflow: hidden; }
         #lightbox-overlay {
@@ -136,8 +154,7 @@
             inset: 0;
             z-index: 10000;
             background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -194,7 +211,7 @@
                 </svg>
                 <div>
                     <span class="block text-lg md:text-xl font-bold tracking-tight" style="color: var(--color-text);">Gurpreet Insha</span>
-                    <span class="hidden md:block text-xs tracking-wide font-light" style="color: var(--color-text-muted);">Your Graphic Designer</span>
+                    <span class="hidden md:block text-xs tracking-wide font-light" style="color: var(--color-text-muted);">Graphic & Brand Designer</span>
                 </div>
             </a>
             <div class="flex items-center space-x-2 md:space-x-4">
@@ -230,10 +247,10 @@
     <main class="container mx-auto px-6 pt-32 md:pt-40">
         <section id="home" class="text-center py-8 md:py-12">
             <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-4 animate-on-scroll">
-                I am Gurpreet Insha <br> your <span class="gradient-text">Graphic Designer.</span>
+                I'm Gurpreet Insha, <br> your next <span class="gradient-text">Graphic Designer.</span>
             </h1>
             <p class="text-lg md:text-xl max-w-3xl mx-auto mb-10 animate-on-scroll" style="transition-delay: 150ms; color: var(--color-text-muted);">
-                I'm a passionate graphic designer helping businesses with my creatively designed visuals that grabs attention.
+                I'm a passionate designer who helps businesses grab attention with creative, purpose-driven visuals.
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 animate-on-scroll" style="transition-delay: 300ms;">
                 <a href="#projects" class="cta-button w-full sm:w-auto bg-[var(--color-primary)] text-[var(--color-bg)] font-bold px-8 py-3 rounded-full">
@@ -260,8 +277,8 @@
                 </div>
                 <div class="md:w-2/3 animate-on-scroll text-center md:text-left" style="transition-delay: 150ms;">
                     <h2 class="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
-                    <p class="mb-4 leading-relaxed" style="color: var(--color-text-muted);">Hello! I'm Gurpreet Insha, a creative designer with a passion for building impactful designs. For me, design is more than just aesthetics; it's a powerful tool for telling something without speaking a word.</p>
-                    <p class="mb-6 leading-relaxed" style="color: var(--color-text-muted);">My approach is collaborative and strategic. I work closely with my clients to understand their audience and goals, ensuring every section of design has a purpose.</p>
+                    <p class="mb-4 leading-relaxed" style="color: var(--color-text-muted);">Hello! I'm Gurpreet Insha, a creative designer with a passion for building impactful brands. To me, design isn't just about making things look good; it’s a powerful tool to communicate ideas without saying a word.</p>
+                    <p class="mb-6 leading-relaxed" style="color: var(--color-text-muted);">I believe in working together. I take the time to really understand your vision and your audience, ensuring every design choice has a clear purpose and helps you reach your goals.</p>
                 </div>
              </div>
         </section>
@@ -273,22 +290,22 @@
                     <div class="card p-8 text-center rounded-2xl animate-on-scroll h-full">
                         <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full" style="background-color: color-mix(in srgb, var(--color-primary) 15%, transparent);"><svg class="h-8 w-8" style="color: var(--color-primary);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.539 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.539-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg></div>
                         <h3 class="text-2xl font-bold mb-2">Branding</h3>
-                        <p class="text-sm font-light" style="color: var(--color-text-muted);">Crafting memorable brand identities with unique logos and style guides that captivate your audience.</p>
+                        <p class="text-sm font-light" style="color: var(--color-text-muted);">I build memorable brand identities from the ground up, with unique logos and style guides that connect with your audience.</p>
                     </div>
                     <div class="card p-8 text-center rounded-2xl animate-on-scroll h-full">
                         <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full" style="background-color: color-mix(in srgb, var(--color-primary) 15%, transparent);"><svg class="h-8 w-8" style="color: var(--color-primary);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
                         <h3 class="text-2xl font-bold mb-2">UI/UX Design</h3>
-                        <p class="text-sm font-light" style="color: var(--color-text-muted);">Designing intuitive and beautiful user interfaces for websites and mobile applications.</p>
+                        <p class="text-sm font-light" style="color: var(--color-text-muted);">I design clean, intuitive, and beautiful user interfaces for websites and apps that are a joy to use.</p>
                     </div>
                     <div class="card p-8 text-center rounded-2xl animate-on-scroll h-full">
                         <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full" style="background-color: color-mix(in srgb, var(--color-primary) 15%, transparent);"><svg class="h-8 w-8" style="color: var(--color-primary);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.5L15.232 5.232z"/></svg></div>
                         <h3 class="text-2xl font-bold mb-2">Illustration</h3>
-                        <p class="text-sm font-light" style="color: var(--color-text-muted);">Creating custom illustrations and logos that add a remarkable personality to your brand.</p>
+                        <p class="text-sm font-light" style="color: var(--color-text-muted);">I create custom illustrations and logos that give your brand a unique and memorable personality.</p>
                     </div>
                     <div class="card p-8 text-center rounded-2xl animate-on-scroll h-full">
                         <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full" style="background-color: color-mix(in srgb, var(--color-primary) 15%, transparent);"><svg class="h-8 w-8" style="color: var(--color-primary);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
                         <h3 class="text-2xl font-bold mb-2">Social Media</h3>
-                        <p class="text-sm font-light" style="color: var(--color-text-muted);">Designing eye-catching thumbnails, posts, carousels, and templates for social media platforms.</p>
+                        <p class="text-sm font-light" style="color: var(--color-text-muted);">I design eye-catching graphics for social media, including thumbnails, posts, and templates that stop the scroll.</p>
                     </div>
                 </div>
              </div>
@@ -305,9 +322,16 @@
                     <button class="filter-btn px-4 py-2 rounded-full text-sm font-semibold" data-filter="print">Print</button>
                 </div>
             </div>
-            <div class="scroller">
-                <div id="project-grid" class="scroller__track scroller__track--right">
+            <div class="scroller-container">
+                <div class="scroller">
+                    <div id="project-grid" class="scroller__track scroller__track--right"></div>
                 </div>
+                <button aria-label="Scroll to previous item" class="scroller-btn scroller-btn--prev">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <button aria-label="Scroll to next item" class="scroller-btn scroller-btn--next">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
             </div>
         </section>
         
@@ -321,28 +345,28 @@
                             <div class="absolute left-[1.125rem] md:left-1/2 top-1 w-6 h-6 rounded-full bg-[var(--color-primary)] ring-8 ring-[var(--color-bg)] -translate-x-1/2"></div>
                             <div class="pl-12 md:ml-auto md:w-5/12 md:pl-12 md:text-left">
                                 <h3 class="text-2xl font-bold mb-1">01. Discovery & Strategy</h3>
-                                <p class="text-sm font-light" style="color: var(--color-text-muted);">At very first I search to get idea of what we are going to make and what audience need.</p>
+                                <p class="text-sm font-light" style="color: var(--color-text-muted);">First, I dive deep to understand your project's goals, your vision, and what your audience truly needs.</p>
                             </div>
                         </div>
                         <div class="relative mb-12 animate-on-scroll">
                             <div class="absolute left-[1.125rem] md:left-1/2 top-1 w-6 h-6 rounded-full bg-[var(--color-primary)] ring-8 ring-[var(--color-bg)] -translate-x-1/2"></div>
                             <div class="pl-12 md:w-5/12 md:text-right md:pr-12 md:pl-0">
                                 <h3 class="text-2xl font-bold mb-1">02. Concept & Design</h3>
-                                <p class="text-sm font-light" style="color: var(--color-text-muted);">This is where ideas come to life. I took pen paper and perception all combined and create rough sketches.</p>
+                                <p class="text-sm font-light" style="color: var(--color-text-muted);">This is where the magic happens. I start sketching out initial ideas and turning our strategy into rough visuals.</p>
                             </div>
                         </div>
                         <div class="relative mb-12 animate-on-scroll">
                             <div class="absolute left-[1.125rem] md:left-1/2 top-1 w-6 h-6 rounded-full bg-[var(--color-primary)] ring-8 ring-[var(--color-bg)] -translate-x-1/2"></div>
                             <div class="pl-12 md:ml-auto md:w-5/12 md:pl-12 md:text-left">
                                 <h3 class="text-2xl font-bold mb-1">03. Refinement & Build</h3>
-                                <p class="text-sm font-light" style="color: var(--color-text-muted);">Based on your feedback and my ideation, I refine the rough sketch by polishing every detail until it's perfect and ready.</p>
+                                <p class="text-sm font-light" style="color: var(--color-text-muted);">Using your feedback, I refine the initial concepts, polishing every detail until the design is pixel-perfect.</p>
                             </div>
                         </div>
                         <div class="relative animate-on-scroll">
                             <div class="absolute left-[1.125rem] md:left-1/2 top-1 w-6 h-6 rounded-full bg-[var(--color-primary)] ring-8 ring-[var(--color-bg)] -translate-x-1/2"></div>
                             <div class="pl-12 md:w-5/12 md:text-right md:pr-12 md:pl-0">
                                 <h3 class="text-2xl font-bold mb-1">04. Delivery & Launch</h3>
-                                <p class="text-sm font-light" style="color: var(--color-text-muted);">I package all the final assets like mockups for big projects and provide you with everything you need for a successful launch and future use.</p>
+                                <p class="text-sm font-light" style="color: var(--color-text-muted);">Once approved, I package up all the final files, giving you everything you need for a successful launch and beyond.</p>
                             </div>
                         </div>
                     </div>
@@ -352,17 +376,31 @@
 
         <section id="feedbacks" class="py-20">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll">What Clients Say</h2>
-            <div class="scroller">
-                <div class="scroller__track" id="feedback-container">
+            <div class="scroller-container">
+                <div class="scroller">
+                    <div class="scroller__track" id="feedback-container"></div>
                 </div>
+                <button aria-label="Scroll to previous item" class="scroller-btn scroller-btn--prev">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <button aria-label="Scroll to next item" class="scroller-btn scroller-btn--next">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
             </div>
         </section>
 
         <section id="faq" class="py-20">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll">Frequently Asked Questions</h2>
+            <div class="scroller-container">
                 <div class="scroller">
-                    <div class="scroller__track scroller__track--right" id="faq-container">
-                    </div>
+                    <div class="scroller__track scroller__track--right" id="faq-container"></div>
+                </div>
+                <button aria-label="Scroll to previous item" class="scroller-btn scroller-btn--prev">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <button aria-label="Scroll to next item" class="scroller-btn scroller-btn--next">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
             </div>
         </section>
 
@@ -370,7 +408,7 @@
             <div class="section-container">
                 <div class="text-center mb-16">
                      <h2 class="text-4xl md:text-5xl font-bold mb-4 animate-on-scroll">Let's Get In Touch</h2>
-                     <p class="text-lg max-w-3xl mx-auto animate-on-scroll" style="transition-delay: 150ms; color: var(--color-text-muted);">I'm currently available for freelance opportunities. Have a project in mind or just want to say hello? Feel free to reach out. Let's create something amazing together!</p>
+                     <p class="text-lg max-w-3xl mx-auto animate-on-scroll" style="transition-delay: 150ms; color: var(--color-text-muted);">I'm currently available for new freelance projects. Have an idea you want to discuss? Feel free to reach out. Let's create something amazing together!</p>
                 </div>
                 
                 <div class="grid md:grid-cols-5 gap-12">
@@ -393,7 +431,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-semibold text-lg" style="color: var(--color-text);">Location</h4>
-                                    <p class="text-sm" style="color: var(--color-text-muted);">Khatauli, Uttarpradesh, India</p>
+                                    <p class="text-sm" style="color: var(--color-text-muted);">Khatauli, Uttar Pradesh, India</p>
                                 </div>
                             </div>
                         </div>
@@ -475,27 +513,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
     const projectData = [
-        { id: 1, category: " social", imgSrc: "https://i.ibb.co/B5CC8pcT/Whats-App-Image-2025-08-13-at-21-05-57-c1f93371.jpg.jpg", title: "YouTube Thumbnail Design", desc: "Designed many eye-catching thumbnails for popular YouTubers.", link: "#" },
-        { id: 2, category: "branding", imgSrc: "https://i.ibb.co/SDcBdVZD/Whats-App-Image-2025-08-19-at-22-24-07-a93b95cc.jpg", title: "Creative Brand Logos", desc: "I create sensible logos, wordmark or emblem, everything is done here.", link: "#" },
-        { id: 3, category: "branding social", imgSrc: "https://i.ibb.co/v45bWYt9/image.png", title: "Supplement Brand Banner", desc: "Created a stunning banner to advertise a brand's protein powder.", link: "#" },
-        { id: 4, category: "branding print", imgSrc: "https://i.ibb.co/WvqXnMpg/Pink-and-White-Healthy-Drinks-Facebook-Story-Ads.jpg", title: "Energy Drink Can Design", desc: "We created an energy can design in a design competition.", link: "#" },
-        { id: 5, category: "ui-ux", imgSrc: "https://i.ibb.co/WWBk102n/Whats-App-Image-2025-08-19-at-23-07-19-8a97194d.jpg", title: "Portfolio website Clean User Interface", desc: "A sleek and modern user interface for a Portfolio Website.", link: "#" },
-        { id: 6, category: "branding print", imgSrc: "https://i.ibb.co/b5qZRn4D/Whats-App-Image-2025-08-08-at-23-26-58-b7fd8ac9.jpg", title: "Book Cover Design", desc: "Created an eye-grabbing book cover design to help increase sales.", link: "#" },
+        { id: 1, category: "social", imgSrc: "https://i.ibb.co/B5CC8pcT/Whats-App-Image-2025-08-13-at-21-05-57-c1f93371.jpg.jpg", title: "YouTube Thumbnail Design", desc: "I've designed dozens of eye-catching thumbnails for popular YouTube creators to boost their clicks.", link: "#" },
+        { id: 2, category: "branding", imgSrc: "https://i.ibb.co/SDcBdVZD/Whats-App-Image-2025-08-19-at-22-24-07-a93b95cc.jpg", title: "Creative Brand Logos", desc: "I create meaningful logos of all types, from wordmarks to emblems, to represent your brand's core values.", link: "#" },
+        { id: 3, category: "branding social", imgSrc: "https://i.ibb.co/v45bWYt9/image.png", title: "Supplement Brand Banner", desc: "Created a stunning banner to advertise a brand's new line of protein powder.", link: "#" },
+        { id: 4, category: "branding print", imgSrc: "https://i.ibb.co/WvqXnMpg/Pink-and-White-Healthy-Drinks-Facebook-Story-Ads.jpg", title: "Energy Drink Can Design", desc: "Developed a vibrant and energetic can design as part of a competitive branding project.", link: "#" },
+        { id: 5, category: "ui-ux", imgSrc: "https://i.ibb.co/WWBk102n/Whats-App-Image-2025-08-19-at-23-07-19-8a97194d.jpg", title: "Portfolio Website UI", desc: "A sleek and modern user interface designed for a creative portfolio website.", link: "#" },
+        { id: 6, category: "branding print", imgSrc: "https://i.ibb.co/b5qZRn4D/Whats-App-Image-2025-08-08-at-23-26-58-b7fd8ac9.jpg", title: "Book Cover Design", desc: "Designed a compelling book cover meant to capture attention on a crowded shelf and boost sales.", link: "#" },
     ];
 
     const faqData = [
-        { q: "What is your design cost looks like?", a: "My design costs are manageable and project-based. Feel free to ask for a quote using the form below." },
-        { q: "How long does a typical project take?", a: "Timelines vary. A simple thumbnail might be done in a day, a logo can take a week, while a full branding package may take 4 weeks or more. I'll provide a clear timeline once I understand your needs." },
-        { q: "What files do I receive upon project completion?", a: "You'll receive all necessary files for both web and print, including JPG, PNG, PDF, and source files like SVG or AI, all organized in a folder for your convenience." },
-        { q: "How do you handle revisions?", a: "I believe in a collaborative process. Each project package typically includes a set number of revision rounds (usually 2-3) at key stages. We'll work together to ensure you're completely happy with the final design." },
-        { q: "What do you need from me to get started?", a: "To begin, I'll need a clear brief outlining your project goals, target audience, any specific ideas you have, and examples of designs you like. The more information you can provide, the better I can bring your vision to life." }
+        { q: "What are your design rates?", a: "My rates are based on the project's scope. I provide a detailed, no-obligation quote after we discuss your specific needs. Just reach out using the form below!" },
+        { q: "How long does a typical project take?", a: "Timelines vary. A simple thumbnail might be done in a day, while a full branding package could take a few weeks. I'll provide a clear timeline upfront once I understand your needs." },
+        { q: "What files will I receive?", a: "You'll get everything you need for both web and print. This usually includes JPG, PNG, PDF, and the original source files (like SVG or AI), all neatly organized for you." },
+        { q: "How do you handle revisions?", a: "Collaboration is key! Every project includes a set number of revision rounds (usually 2-3) at key stages. We'll work together to make sure you absolutely love the final design." },
+        { q: "What do you need from me to start?", a: "To start, I just need a clear brief about your project goals, your target audience, and any ideas you already have. The more info you share, the better I can bring your vision to life." }
     ];
     
     const feedbackData = [
-        { text: "Working with Gurpreet is like working with my own brother, He understands every single point of my Idea.", author: "- Abhi Garg, Business Owner" },
-        { text: "Loved to work with Gurpreet, He ended up with a very nice looking Logo, I loved both the logo and banner. SUBSCRIBE TO MY CHANNEL.", author: "- Ashutosh Chaudhary, YouTuber" },
-        { text: "I had a great experience with Gurpreet, he did a nice job and the outcome was beyond my expectations. Initially I was a little tensed, but he resolved all my queries and came out with a great result. Looking for more working opportunities with him in future. Best of luck", author: "- Priyank Tyagi, Fitness Influencer" },
-        { text: "Gurpreet bhai tumhare thumbnail and banner bahut acha lagata hai. Work together is my best experience", author: "- Aditya Jain, Youtuber" }
+        { text: "Working with Gurpreet is like working with my own brother. He understands every single point of my idea and brings it to life perfectly.", author: "- Abhi Garg, Business Owner" },
+        { text: "Loved working with Gurpreet! He delivered a fantastic logo and banner. I'm thrilled with the result. Subscribe to my channel!", author: "- Ashutosh Chaudhary, YouTuber" },
+        { text: "I had a great experience with Gurpreet. The final design was beyond my expectations. I was a bit nervous at first, but he guided me through the process and delivered a great result. Looking forward to working with him again.", author: "- Priyank Tyagi, Fitness Influencer" },
+        { text: "Gurpreet's thumbnails and banners are amazing. Working with him has been my best experience, and he always delivers top-quality work.", author: "- Aditya Jain, YouTuber" }
     ];
 
     function initializeApp() {
@@ -511,6 +549,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initThemeSwitcher();
         initReadingFocus();
         initLightbox();
+        initManualScrollers();
 
         if (!isTouchDevice) {
             initCustomCursor();
@@ -544,8 +583,8 @@ document.addEventListener('DOMContentLoaded', function() {
             return items.map(f => `
                 <div class="scroller-item" ${isHidden ? 'aria-hidden="true"' : ''}>
                     <div class="card p-8 rounded-2xl h-full">
-                        <p class="mb-6 italic leading-relaxed font-normal" style="color: var(--color-text-muted);">${f.text}</p>
-                        <p class="font-bold" style="color: var(--color-primary);">${f.author}</p>
+                        <p class="mb-6 italic leading-relaxed font-normal" style="color: var(--color-text-muted);">"${f.text}"</p>
+                        <p class="font-bold text-right" style="color: var(--color-primary);">${f.author}</p>
                     </div>
                 </div>`).join('');
         };
@@ -574,6 +613,57 @@ document.addEventListener('DOMContentLoaded', function() {
                 const faqItem = questionHeader.closest('.faq-item');
                 faqItem.classList.toggle('open');
             }
+        });
+    }
+
+    function initManualScrollers() {
+        document.querySelectorAll('.scroller-container').forEach(container => {
+            const track = container.querySelector('.scroller__track');
+            const prevBtn = container.querySelector('.scroller-btn--prev');
+            const nextBtn = container.querySelector('.scroller-btn--next');
+            if (!track || !prevBtn || !nextBtn) return;
+
+            let currentTranslateX = 0;
+            let timeoutId;
+
+            const updateButtons = () => {
+                const itemWidth = track.children[0].offsetWidth;
+                const totalWidth = itemWidth * (track.children.length / 2);
+                const visibleWidth = container.querySelector('.scroller').offsetWidth;
+                
+                prevBtn.disabled = currentTranslateX >= 0;
+                nextBtn.disabled = currentTranslateX <= -(totalWidth - visibleWidth);
+            };
+
+            const moveScroller = (direction) => {
+                const itemWidth = track.children[0].offsetWidth;
+                currentTranslateX += direction * itemWidth;
+                
+                const totalWidth = itemWidth * (track.children.length / 2);
+                const visibleWidth = container.querySelector('.scroller').offsetWidth;
+                
+                if (currentTranslateX > 0) currentTranslateX = 0;
+                if (currentTranslateX < -(totalWidth - visibleWidth)) {
+                    currentTranslateX = -(totalWidth - visibleWidth);
+                }
+
+                track.style.transform = `translateX(${currentTranslateX}px)`;
+                track.classList.add('is-paused');
+
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => {
+                    track.classList.remove('is-paused');
+                }, 5000); // Resume auto-scroll after 5 seconds of inactivity
+
+                updateButtons();
+            };
+
+            prevBtn.addEventListener('click', () => moveScroller(1));
+            nextBtn.addEventListener('click', () => moveScroller(-1));
+
+            // Initial button state
+            updateButtons();
+            window.addEventListener('resize', updateButtons);
         });
     }
     
@@ -642,9 +732,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function initThemeSwitcher() {
-        const themes = ['dark-gold', 'light-gold', 'dark-azure', 'light-azure', 'dark-mint', 'light-mint'];
+        // MODIFIED: Reordered themes as requested
+        const themes = ['dark-gold', 'dark-mint', 'dark-azure', 'light-gold', 'light-mint', 'light-azure'];
         const themeCycleBtn = document.getElementById('theme-cycle-btn');
-        let currentThemeIndex = 2;
+        let currentThemeIndex = 2; // Default to dark-azure
         const applyTheme = (index) => { currentThemeIndex = index; root.dataset.theme = themes[index]; localStorage.setItem('portfolioThemeIndex', index); };
         themeCycleBtn.addEventListener('click', () => applyTheme((currentThemeIndex + 1) % themes.length));
         const savedIndex = parseInt(localStorage.getItem('portfolioThemeIndex'), 10);
