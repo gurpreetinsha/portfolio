@@ -78,12 +78,11 @@
         .nav-link::after{content:'';position:absolute;width:100%;height:2px;bottom:-4px;left:0;background-color:var(--color-primary);transform:scaleX(0);transform-origin:bottom right;transition:transform .25s ease-out}
         .nav-link:hover::after{transform:scaleX(1);transform-origin:bottom left}
         
-        /* New Nav Capsule Style */
         .nav-capsule {
             background-color: color-mix(in srgb, var(--color-surface) 50%, transparent);
             border: 1px solid var(--color-border);
             border-radius: 9999px;
-            padding: 0.5rem;
+            padding: 0.75rem 1rem; /* Increased padding */
         }
 
         #mobile-nav{transform:translateY(-100%);transition:transform .4s cubic-bezier(.25,1,.5,1)}
@@ -124,7 +123,7 @@
             -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); 
             mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); 
             cursor: grab; 
-            user-select: none; /* Prevent text selection while dragging */
+            user-select: none;
         }
         .scroller:active { cursor: grabbing; }
         .scroller__track { 
@@ -586,7 +585,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!scroller || !track) return;
 
             let state = {
-                isInteracting: false,
                 isDragging: false,
                 startX: 0,
                 currentX: 0,
@@ -594,20 +592,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 rafId: null,
             };
 
-            const autoScrollSpeed = 0.4;
-            const friction = 0.95;
-            let interactionTimeout;
+            const friction = 0.92; // How quickly the scroll slows down
 
             function update() {
-                if (!state.isInteracting && !state.isDragging) {
-                    state.currentX -= autoScrollSpeed;
-                }
-                
                 if (Math.abs(state.velocity) > 0.1) {
                     state.currentX += state.velocity;
                     state.velocity *= friction;
                 }
 
+                // Infinite scroll logic
                 const boundary = track.scrollWidth / 2;
                 if (state.currentX < -boundary) state.currentX += boundary;
                 if (state.currentX > 0) state.currentX -= boundary;
@@ -618,19 +611,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
             function startInteraction(x) {
                 if (state.rafId) cancelAnimationFrame(state.rafId);
-                clearTimeout(interactionTimeout);
-                state.isInteracting = true;
+                state.isDragging = true;
                 state.startX = x - state.currentX;
                 state.velocity = 0;
+                requestAnimationFrame(update); // Start animation on interaction
             }
 
             function endInteraction() {
                 state.isDragging = false;
-                clearTimeout(interactionTimeout);
-                interactionTimeout = setTimeout(() => {
-                    state.isInteracting = false;
-                    requestAnimationFrame(update);
-                }, 2000);
             }
 
             function move(x) {
@@ -642,13 +630,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             function jump(direction) {
-                 if (state.isInteracting) return;
-                 startInteraction(0);
+                 if (state.isDragging) return;
                  const itemWidth = track.querySelector('.scroller-item').offsetWidth;
-                 state.velocity = direction * itemWidth * 0.1; // Give it a little push
-                 setTimeout(() => {
-                    endInteraction();
-                 }, 50);
+                 // Add velocity to smoothly slide
+                 state.velocity += direction * itemWidth * 0.4;
             }
 
             if(prevBtn && nextBtn){
@@ -656,14 +641,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 nextBtn.addEventListener('click', () => jump(-1));
             }
 
-            scroller.addEventListener('mousedown', (e) => { e.preventDefault(); startInteraction(e.pageX); state.isDragging = true; });
+            scroller.addEventListener('mousedown', (e) => { e.preventDefault(); startInteraction(e.pageX); });
             window.addEventListener('mousemove', (e) => move(e.pageX));
-            window.addEventListener('mouseup', () => { if (state.isDragging) endInteraction(); });
-            scroller.addEventListener('touchstart', (e) => { startInteraction(e.touches[0].pageX); state.isDragging = true; }, { passive: true });
+            window.addEventListener('mouseup', endInteraction);
+            window.addEventListener('mouseleave', endInteraction); // End if mouse leaves window
+            
+            scroller.addEventListener('touchstart', (e) => startInteraction(e.touches[0].pageX), { passive: true });
             window.addEventListener('touchmove', (e) => { if(state.isDragging) move(e.touches[0].pageX); }, { passive: true });
-            window.addEventListener('touchend', () => { if (state.isDragging) endInteraction(); });
+            window.addEventListener('touchend', endInteraction);
 
-            update();
+            // Start the animation loop
+            state.rafId = requestAnimationFrame(update);
         });
     }
 
