@@ -82,7 +82,7 @@
             background-color: color-mix(in srgb, var(--color-surface) 50%, transparent);
             border: 1px solid var(--color-border);
             border-radius: 9999px;
-            padding: 0.75rem 1rem; /* Increased padding */
+            padding: 0.75rem 1rem;
         }
 
         #mobile-nav{transform:translateY(-100%);transition:transform .4s cubic-bezier(.25,1,.5,1)}
@@ -113,7 +113,7 @@
         #process-line { transform: scaleY(0); transform-origin: top; transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1); }
         #process-line.is-visible { transform: scaleY(1); }
 
-        #back-to-top{position:fixed;bottom:20px;right:20px;width:50px;height:50px;background-color:var(--color-primary);color:var(--color-bg);border-radius:50%;display:flex;align-items:center;justify:content:center;z-index:100;opacity:0;visibility:hidden;transform:translateY(20px);transition:all .3s ease;box-shadow:0 4px 15px var(--color-shadow)}
+        #back-to-top{position:fixed;bottom:20px;right:20px;width:50px;height:50px;background-color:var(--color-primary);color:var(--color-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:100;opacity:0;visibility:hidden;transform:translateY(20px);transition:all .3s ease;box-shadow:0 4px 15px var(--color-shadow)}
         #back-to-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
         #back-to-top:hover{transform:scale(1.1) rotate(-5deg)}
         
@@ -586,6 +586,314 @@ document.addEventListener('DOMContentLoaded', function() {
 
             let state = {
                 isDragging: false,
+                isUserInteracting: false,
+                startX: 0,
+                currentX: 0,
+                velocity: 0,
+                targetX: null,
+                rafId: null,
+            };
+            
+            const autoScrollSpeed = 0.2;
+            const friction = 0.92;
+            let userInteractionTimeout;
+
+            function update() {
+                // Apply auto-scroll only if not user-controlled
+                if (!state.isUserInteracting && state.targetX === null) {
+                    state.currentX -= autoScrollSpeed;
+                }
+
+                // Smoothly move towards a target position (for button clicks)
+                if (state.targetX !== null) {
+                    const diff = state.targetX - state.currentX;
+                    state.velocity = diff * 0.1;
+                    if (Math.abs(diff) < 1) {
+                        state.currentX = state.targetX;
+                        state.targetX = null;
+                    }
+                }
+                
+                // Apply friction-based coasting
+                if (Math.abs(state.velocity) > 0.1) {
+                    state.currentX += state.velocity;
+                    state.velocity *= friction;
+                } else if (!state.isDragging && state.targetX === null) {
+                    state.velocity = 0;
+                }
+
+                // Infinite scroll boundary logic
+                const boundary = track.scrollWidth / 2;
+                if (state.currentX < -boundary) state.currentX += boundary;
+                if (state.currentX > 0) state.currentX -= boundary;
+                
+                track.style.transform = `translateX(${state.currentX}px)`;
+                state.rafId = requestAnimationFrame(update);
+            }
+            
+            function setUserInteraction(interacting) {
+                state.isUserInteracting = interacting;
+                clearTimeout(userInteractionTimeout);
+                if (!interacting) {
+                    userInteractionTimeout = setTimeout(() => {
+                        state.isUserInteracting = false;
+                    }, 3000);
+                }
+            }
+
+            function startDrag(x) {
+                setUserInteraction(true);
+                state.isDragging = true;
+                state.targetX = null;
+                state.startX = x - state.currentX;
+                state.velocity = 0;
+            }
+
+            function endDrag() {
+                if(state.isDragging) {
+                    state.isDragging = false;
+                    setUserInteraction(false);
+                }
+            }
+
+            function onDrag(x) {
+                if (!state.isDragging) return;
+                const prevX = state.currentX;
+                state.currentX = x - state.startX;
+                state.velocity = state.currentX - prevX;
+            }
+            
+            function onButtonClick(direction) {
+                 setUserInteraction(true);
+                 state.targetX = null; // Clear any previous target
+                 const itemWidth = track.querySelector('.scroller-item').offsetWidth;
+                 const numItems = track.children.length / 2; // Since content is duplicated
+                 const currentItemIndex = Math.round(-state.currentX / itemWidth);
+                 
+                 let targetItemIndex = currentItemIndex + direction;
+
+                 // Clamp to keep it simple, the infinite loop will handle the rest
+                 targetItemIndex = Math.max(0, Math.min(numItems - 1, targetItemIndex));
+
+                 state.targetX = -targetItemIndex * itemWidth;
+                 setUserInteraction(false); // Allow timeout to resume auto-scroll
+            }
+
+            // Event Listeners
+            scroller.addEventListener('mouseenter', () => setUserInteraction(true));
+            scroller.addEventListener('mouseleave', () => { if(!state.isDragging) setUserInteraction(false); });
+            
+            if(prevBtn && nextBtn){
+                prevBtn.addEventListener('click', () => onButtonClick(-1));
+                nextBtn.addEventListener('click', () => onButtonClick(1));
+            }
+
+            scroller.addEventListener('mousedown', (e) => { e.preventDefault(); startDrag(e.pageX); });
+            window.addEventListener('mousemove', (e) => onDrag(e.pageX));
+            window.addEventListener('mouseup', endDrag);
+            window.addEventListener('mouseleave', endDrag);
+            
+            scroller.addEventListener('touchstart', (e) => startDrag(e.touches[0].pageX), { passive: true });
+            window.addEventListener('touchmove', (e) => { if(state.isDragging) onDrag(e.touches[0].pageX); }, { passive: true });
+            window.addEventListener('touchend', endDrag);
+
+            // Start the animation loop
+            state.rafId = requestAnimationFrame(update);
+        });
+    }
+
+    function initLightbox() {
+        const lightboxOverlay = document.getElementById('lightbox-overlay');
+        const lightboxImage = document.getElementById('lightbox-image');
+        if (!lightboxOverlay || !lightboxImage) return;
+
+        function openLightbox(src) {
+            lightboxImage.src = src;
+            body.classList.add('lightbox-open');
+            lightboxOverlay.classList.add('visible');
+        }
+
+        function closeLightbox() {
+            body.classList.remove('lightbox-open');
+            lightboxOverlay.classList.remove('visible');
+        }
+
+        document.addEventListener('click', function(e) {
+            const trigger = e.target.closest('.lightbox-trigger');
+            if (trigger) {
+                e.preventDefault();
+                const imageSrc = trigger.getAttribute('data-lightbox-src');
+                if (imageSrc) openLightbox(imageSrc);
+            }
+        });
+        
+        lightboxOverlay.addEventListener('click', function(e) {
+            if (e.target === lightboxOverlay) {
+                closeLightbox();
+            }
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && body.classList.contains('lightbox-open')) {
+                closeLightbox();
+            }
+        });
+    }
+
+    function initReadingFocus() {
+        const debounce = (func, delay) => { let timeoutId; return (...args) => { clearTimeout(timeoutId); timeoutId = setTimeout(() => { func.apply(this, args); }, delay); }; };
+        const sections = Array.from(document.querySelectorAll('section[id]'));
+        if (sections.length === 0) return;
+        const updateFocus = () => {
+            const viewportCenter = window.scrollY + window.innerHeight / 2;
+            let closestSection = null;
+            let minDistance = Infinity;
+            sections.forEach(sec => {
+                const sectionTop = sec.offsetTop;
+                const sectionHeight = sec.offsetHeight;
+                const sectionCenter = sectionTop + sectionHeight / 2;
+                const distance = Math.abs(viewportCenter - sectionCenter);
+                if (distance < minDistance) { minDistance = distance; closestSection = sec; }
+            });
+            if (closestSection) { sections.forEach(sec => { sec.classList.toggle('is-unfocused', sec.id !== closestSection.id); }); }
+        };
+        updateFocus();
+        window.addEventListener('scroll', debounce(updateFocus, 100));
+    }
+
+    function initPreloader() {
+        const preloader = document.getElementById('preloader');
+        window.addEventListener('load', () => { preloader.style.opacity = '0'; setTimeout(() => preloader.style.display = 'none', 500); });
+    }
+    
+    function initThemeSwitcher() {
+        const themes = ['dark-gold', 'dark-mint', 'dark-azure', 'light-gold', 'light-mint', 'light-azure'];
+        const themeCycleBtn = document.getElementById('theme-cycle-btn');
+        let currentThemeIndex = 2; // Default to dark-azure
+        const applyTheme = (index) => { currentThemeIndex = index; root.dataset.theme = themes[index]; localStorage.setItem('portfolioThemeIndex', index); };
+        themeCycleBtn.addEventListener('click', () => applyTheme((currentThemeIndex + 1) % themes.length));
+        const savedIndex = parseInt(localStorage.getItem('portfolioThemeIndex'), 10);
+        applyTheme(isNaN(savedIndex) ? 2 : savedIndex);
+    }
+
+    function initLiquidGlow() {
+        const glow1 = document.getElementById('glow1');
+        window.addEventListener('mousemove', (e) => { requestAnimationFrame(() => { glow1.style.setProperty('--x', `${e.clientX}px`); glow1.style.setProperty('--y', `${e.clientY}px`); }); });
+    }
+
+    function initCustomCursor() {
+        const cursorOutline = document.querySelector('.cursor-outline');
+        const hoverables = 'a, button, .faq-question, input, textarea, [tabindex]:not([tabindex="-1"])';
+        const textElements = 'p, li, span, h1, h2, h3, h4, label';
+        window.addEventListener('mousemove', (e) => { body.style.setProperty('--cursor-x', e.clientX + 'px'); body.style.setProperty('--cursor-y', e.clientY + 'px'); });
+        document.addEventListener('mouseover', e => { if (e.target.matches(hoverables)) cursorOutline.classList.add('hovered'); if (e.target.matches(textElements)) cursorOutline.classList.add('text-hovered'); });
+        document.addEventListener('mouseout', e => { if (e.target.matches(hoverables)) cursorOutline.classList.remove('hovered'); if (e.target.matches(textElements)) cursorOutline.classList.remove('text-hovered'); });
+    }
+    
+    function initScrollAnimations() {
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1 });
+        setTimeout(() => { document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el)); }, 100);
+    }
+    
+    function initMobileNav() {
+        const toggleBtn = document.getElementById('mobile-nav-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        toggleBtn.addEventListener('click', () => body.classList.toggle('mobile-nav-open'));
+        mobileNav.addEventListener('click', (e) => { if (e.target.matches('.mobile-nav-link')) body.classList.remove('mobile-nav-open'); });
+    }
+
+    function initProjectFiltering() {
+        const filterContainer = document.getElementById('project-filters');
+        if (!filterContainer) return;
+        filterContainer.addEventListener('click', (e) => {
+            const button = e.target.closest('.filter-btn');
+            if (!button || button.classList.contains('active')) return;
+            filterContainer.querySelector('.active').classList.remove('active');
+            button.classList.add('active');
+            const filterValue = button.dataset.filter;
+            const filteredData = filterValue === '*' ? projectData : projectData.filter(p => p.category.includes(filterValue));
+            populateProjects(filteredData);
+            // Re-initialize scroller functionality for the new content
+            initAdvancedScrollers();
+        });
+    }
+
+    function initBackToTop() {
+        const button = document.getElementById('back-to-top');
+        if (!button) return;
+        window.addEventListener('scroll', () => button.classList.toggle('visible', window.scrollY > 400));
+        button.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+
+    function initContactForm() {
+        const form = document.getElementById('contact-form');
+        if (!form) return;
+        const formStatus = document.getElementById('form-status');
+        const submitButton = document.getElementById('submit-button');
+        const buttonText = submitButton.querySelector('.button-text');
+        const buttonSpinner = submitButton.querySelector('.button-spinner');
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbx_LG6g-f1qMm2CiBCb7fOfSWrRSN2tllXtBcufF6ODhb7oFBz9Fbq9asJ2sgRL8Ba0eA/exec';
+        const inputs = form.querySelectorAll('input, textarea');
+        const validators = { name: value => value.trim().length > 0, email: value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value), message: value => value.trim().length > 10, };
+        const errorMessages = { name: "Please enter your name.", email: "Please enter a valid email address.", message: "Message should be at least 10 characters long.", }
+        function validateField(field) {
+            const validator = validators[field.name];
+            if (!validator) return true;
+            const errorMessageElement = field.parentElement.querySelector('.error-message');
+            const isValid = validator(field.value);
+            if (!isValid) { field.classList.add('invalid'); if (errorMessageElement) { errorMessageElement.textContent = errorMessages[field.name]; errorMessageElement.classList.add('visible'); } } else { field.classList.remove('invalid'); if (errorMessageElement) { errorMessageElement.classList.remove('visible'); } }
+            return isValid;
+        }
+        inputs.forEach(input => { input.addEventListener('input', () => validateField(input)); });
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const isFormValid = Array.from(inputs).reduce((acc, field) => { return validateField(field) && acc; }, true);
+            if (!isFormValid) { formStatus.textContent = 'Please fix the errors above.'; formStatus.style.color = '#f87171'; return; }
+            buttonText.textContent = 'Sending...';
+            buttonSpinner.classList.remove('hidden');
+            submitButton.disabled = true;
+            formStatus.textContent = '';
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => { formStatus.textContent = 'Message sent successfully!'; formStatus.style.color = '#34d399'; form.reset(); inputs.forEach(input => input.classList.remove('invalid')); })
+                .catch(error => { console.error('Error!', error.message); formStatus.textContent = 'An error occurred. Please try again.'; formStatus.style.color = '#f87171'; })
+                .finally(() => { setTimeout(() => { buttonText.textContent = 'Send Message'; buttonSpinner.classList.add('hidden'); submitButton.disabled = false; formStatus.textContent = ''; }, 4000); });
+        });
+    }
+
+    initializeApp();
+});
+</script>
+
+</body>
+</html>        };
+        container.innerHTML = createHtml(data) + createHtml(data, true);
+    }
+    
+    function populatecks() {
+        const container = document.getElementById('ck-container');
+        if (!container) return;
+        const createHtml = (items, isHidden = false) => {
+            return items.map(f => `
+                <div class="scroller-item" ${isHidden ? 'aria-hidden="true"' : ''}>
+                    <div class="card p-8 rounded-2xl h-full">
+                        <p class="mb-6 italic leading-relaxed font-normal" style="color: var(--color-text-muted);">"${f.text}"</p>
+                        <p class="font-bold text-right" style="color: var(--color-primary);">${f.author}</p>
+                    </div>
+                </div>`).join('');
+        };
+        container.innerHTML = createHtml(ckData) + createHtml(ckData, true);
+    }
+    
+    function initAdvancedScrollers() {
+        document.querySelectorAll('.scroller-container').forEach(container => {
+            const scroller = container.querySelector('.scroller');
+            const track = container.querySelector('.scroller__track');
+            const prevBtn = container.querySelector('.scroller-btn--prev');
+            const nextBtn = container.querySelector('.scroller-btn--next');
+            if (!scroller || !track) return;
+
+            let state = {
+                isDragging: false,
                 startX: 0,
                 currentX: 0,
                 velocity: 0,
@@ -819,3 +1127,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+
