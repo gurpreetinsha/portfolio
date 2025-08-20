@@ -2,13 +2,13 @@
 <html lang="en" data-theme="dark-azure">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Gurpreet Insha | Graphic & Brand Designer</title>
     <meta name="description" content="Portfolio of Gurpreet Insha, a passionate graphic and brand designer who creates stunning visuals.">
     <meta name="author" content="Gurpreet Insha">
     <meta name="keywords" content="graphic designer, brand identity, UI/UX, portfolio, logo design, illustration, Gurpreet Insha">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1080 1080'%3E%3Cg transform='matrix(1.83 0 0 1.83 380.38 608.14)'%3E%3Cpath fill='%23000000' transform='translate(-1919.45 -666.25)' d='M2084.5 677v87.028L2084.5 812c0 24-24 48-48 48H1816.5l-7.5.0c-56 0-72.402-39.598-32.804-79.196l16.776-16.776L2084.5 472.5V592L1929.443 747.057c-8.485 8.485-4.97 16.97-6.97 16.97h37c12 0 32.485-8.485 40.97-16.97z'/%3E%3C/g%3E%3Cg transform='matrix(1.83 0 0 1.83 815.54 702.72)'%3E%3Cpath fill='%23000000' transform='translate(-2156.5 -717.71)' d='M2179.458 582.042c12.02-12.02 24.042-7.042 24.042 9.958v172.028V860h-46c-24 0-48-24-48-48v-43.972V652z'/%3E%3C/g%3E%3Cg transform='matrix(1.83 0 0 1.83 815.54 230.7)'%3E%3Cpath fill='%23000000' transform='translate(-2156.5 -460.25)' d='M2109.5 567V447.5L2203.5 353.5V425c0 24-16.97 64.97-33.941 81.941z'/%3E%3C/g%3E%3C/svg%3E">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w.3.org/2000/svg' viewBox='0 0 1080 1080'%3E%3Cg transform='matrix(1.83 0 0 1.83 380.38 608.14)'%3E%3Cpath fill='%23000000' transform='translate(-1919.45 -666.25)' d='M2084.5 677v87.028L2084.5 812c0 24-24 48-48 48H1816.5l-7.5.0c-56 0-72.402-39.598-32.804-79.196l16.776-16.776L2084.5 472.5V592L1929.443 747.057c-8.485 8.485-4.97 16.97-6.97 16.97h37c12 0 32.485-8.485 40.97-16.97z'/%3E%3C/g%3E%3Cg transform='matrix(1.83 0 0 1.83 815.54 702.72)'%3E%3Cpath fill='%23000000' transform='translate(-2156.5 -717.71)' d='M2179.458 582.042c12.02-12.02 24.042-7.042 24.042 9.958v172.028V860h-46c-24 0-48-24-48-48v-43.972V652z'/%3E%3C/g%3E%3Cg transform='matrix(1.83 0 0 1.83 815.54 230.7)'%3E%3Cpath fill='%23000000' transform='translate(-2156.5 -460.25)' d='M2109.5 567V447.5L2203.5 353.5V425c0 24-16.97 64.97-33.941 81.941z'/%3E%3C/g%3E%3C/svg%3E">
 
     <meta property="og:title" content="Gurpreet Insha | Graphic & Brand Designer">
     <meta property="og:description" content="Building memorable brands through strategic and beautiful design.">
@@ -594,7 +594,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return items.map(f => `
                 <div class="scroller-item" ${isHidden ? 'aria-hidden="true"' : ''}>
                     <div class="faq-item card rounded-lg p-6 h-full">
-                        <div class="faq-question flex justify-between items-center">
+                        <div class="faq-question flex justify-between items-center cursor-pointer">
                             <h4 class="text-xl font-semibold">${f.q}</h4>
                             <div class="faq-icon text-2xl" style="color: var(--color-primary);">+</div>
                         </div>
@@ -638,7 +638,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             function update() {
                 const now = performance.now();
-                const deltaTime = state.lastTime ? (now - state.lastTime) / (1000 / 60) : 1; // Normalize to 60fps
+                const deltaTime = state.lastTime ? (now - state.lastTime) / (1000 / 60) : 1;
                 state.lastTime = now;
 
                 if (!state.isInteracting && !state.isDragging) {
@@ -650,12 +650,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     state.velocity *= Math.pow(friction, deltaTime);
                 }
 
-                // Infinite loop logic
                 const boundary = track.scrollWidth / 2;
-                if (direction === -1) { // Moving left
+                if (direction === -1) {
                     if (state.currentX < -boundary) state.currentX += boundary;
                     if (state.currentX > 0) state.currentX -= boundary;
-                } else { // Moving right
+                } else {
                     if (state.currentX > boundary) state.currentX -= boundary;
                     if (state.currentX < 0) state.currentX += boundary;
                 }
@@ -667,7 +666,6 @@ document.addEventListener('DOMContentLoaded', function() {
             function startInteraction(x) {
                 clearTimeout(interactionTimeout);
                 state.isInteracting = true;
-                state.isDragging = true;
                 state.startX = x;
                 state.velocity = 0;
                 state.lastX = x;
@@ -678,7 +676,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 clearTimeout(interactionTimeout);
                 interactionTimeout = setTimeout(() => {
                     state.isInteracting = false;
-                }, 2000); // Resume auto-scroll after 2 seconds of inactivity
+                }, 2000);
             }
 
             function move(x) {
@@ -690,19 +688,36 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // Mouse Events
-            scroller.addEventListener('mouseenter', () => { clearTimeout(interactionTimeout); state.isInteracting = true; });
-            scroller.addEventListener('mouseleave', () => { if (!state.isDragging) endInteraction(); });
-            scroller.addEventListener('mousedown', (e) => { e.preventDefault(); startInteraction(e.pageX); });
+            scroller.addEventListener('mousedown', (e) => {
+                e.preventDefault();
+                startInteraction(e.pageX);
+                state.isDragging = true;
+            });
             window.addEventListener('mousemove', (e) => move(e.pageX));
-            window.addEventListener('mouseup', () => { if (state.isDragging) endInteraction(); });
+            window.addEventListener('mouseup', () => {
+                if (state.isDragging) endInteraction();
+                state.isDragging = false;
+            });
 
-            // Touch Events
-            scroller.addEventListener('touchstart', (e) => startInteraction(e.touches[0].pageX), { passive: true });
-            scroller.addEventListener('touchmove', (e) => move(e.touches[0].pageX), { passive: false });
-            scroller.addEventListener('touchend', () => { if (state.isDragging) endInteraction(); });
-            scroller.addEventListener('touchcancel', () => { if (state.isDragging) endInteraction(); });
+            // Touch Events - Differentiates between tap and drag
+            scroller.addEventListener('touchstart', (e) => {
+                startInteraction(e.touches[0].pageX);
+                state.isDragging = false;
+            }, { passive: true });
+            
+            scroller.addEventListener('touchmove', (e) => {
+                if (Math.abs(e.touches[0].pageX - state.startX) > 10) {
+                    state.isDragging = true;
+                }
+                move(e.touches[0].pageX);
+            }, { passive: true });
+            
+            scroller.addEventListener('touchend', () => {
+                if (state.isDragging) {
+                    endInteraction();
+                }
+            });
 
-            // Start the animation loop
             update();
         });
     }
