@@ -116,9 +116,10 @@
         #back-to-top:hover{transform:scale(1.1) rotate(-5deg)}
         
         .scroller-container { position: relative; }
-        .scroller { overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); }
-        .scroller__track { display: flex; width: max-content; animation: scroll 60s linear infinite; transition: transform 0.5s ease; }
-        .scroller:hover .scroller__track, .scroller__track.is-paused { animation-play-state: paused; }
+        .scroller { overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); cursor: grab; }
+        .scroller:active { cursor: grabbing; }
+        .scroller__track { display: flex; width: max-content; animation: scroll 60s linear infinite; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); }
+        .scroller:hover .scroller__track { animation-play-state: paused; }
         .scroller__track--right { animation-direction: reverse; }
         .scroller-item { flex-shrink: 0; padding: 1rem; }
         #projects .scroller-item { width: clamp(320px, 30vw, 400px); }
@@ -140,8 +141,8 @@
             backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
             cursor: pointer; transition: all 0.3s ease;
         }
-        .scroller-btn:hover { border-color: var(--color-primary); color: var(--color-primary); transform: scale(1.1); }
-        .scroller-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: scale(1); }
+        .scroller-btn:hover:not(:disabled) { border-color: var(--color-primary); color: var(--color-primary); transform: translateY(-50%) scale(1.1); }
+        .scroller-btn:disabled { opacity: 0.3; cursor: not-allowed; }
         .scroller-btn--prev { left: -16px; transform: translateY(-50%); }
         .scroller-btn--next { right: -16px; transform: translateY(-50%); }
         @media (max-width: 768px) {
@@ -616,54 +617,102 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // UPDATED: This function now includes touch-based swiping for mobile devices.
     function initManualScrollers() {
         document.querySelectorAll('.scroller-container').forEach(container => {
             const track = container.querySelector('.scroller__track');
             const prevBtn = container.querySelector('.scroller-btn--prev');
             const nextBtn = container.querySelector('.scroller-btn--next');
-            if (!track || !prevBtn || !nextBtn) return;
+            const scroller = container.querySelector('.scroller');
+
+            if (!track || !scroller) return;
 
             let currentTranslateX = 0;
-            let timeoutId;
 
-            const updateButtons = () => {
-                const itemWidth = track.children[0].offsetWidth;
-                const totalWidth = itemWidth * (track.children.length / 2);
-                const visibleWidth = container.querySelector('.scroller').offsetWidth;
-                
-                prevBtn.disabled = currentTranslateX >= 0;
-                nextBtn.disabled = currentTranslateX <= -(totalWidth - visibleWidth);
-            };
-
-            const moveScroller = (direction) => {
-                const itemWidth = track.children[0].offsetWidth;
-                currentTranslateX += direction * itemWidth;
-                
-                const totalWidth = itemWidth * (track.children.length / 2);
-                const visibleWidth = container.querySelector('.scroller').offsetWidth;
-                
-                if (currentTranslateX > 0) currentTranslateX = 0;
-                if (currentTranslateX < -(totalWidth - visibleWidth)) {
-                    currentTranslateX = -(totalWidth - visibleWidth);
-                }
-
+            const updateScrollState = () => {
                 track.style.transform = `translateX(${currentTranslateX}px)`;
-                track.classList.add('is-paused');
+                if (prevBtn && nextBtn) {
+                    const visibleWidth = scroller.offsetWidth;
+                    const scrollableWidth = track.scrollWidth / 2;
+                    const maxScroll = scrollableWidth - visibleWidth;
+                    prevBtn.disabled = currentTranslateX >= 0;
+                    nextBtn.disabled = currentTranslateX <= -maxScroll + 1;
+                }
+            };
+            
+            const stopAnimation = () => {
+                if (!track.dataset.manualControl) {
+                    track.style.animation = 'none';
+                    track.dataset.manualControl = 'true';
+                }
+            };
+            
+            // Button controls
+            if (prevBtn && nextBtn) {
+                const moveScroller = (direction) => {
+                    stopAnimation();
+                    const itemWidth = track.children[0].getBoundingClientRect().width;
+                    currentTranslateX += direction * itemWidth;
+                    const visibleWidth = scroller.offsetWidth;
+                    const scrollableWidth = track.scrollWidth / 2;
+                    const maxScroll = scrollableWidth - visibleWidth;
+                    if (currentTranslateX > 0) currentTranslateX = 0;
+                    if (currentTranslateX < -maxScroll) currentTranslateX = -maxScroll;
+                    updateScrollState();
+                };
 
-                clearTimeout(timeoutId);
-                timeoutId = setTimeout(() => {
-                    track.classList.remove('is-paused');
-                }, 5000); // Resume auto-scroll after 5 seconds of inactivity
+                prevBtn.addEventListener('click', () => moveScroller(1));
+                nextBtn.addEventListener('click', () => moveScroller(-1));
+            }
+            
+            // Touch controls
+            let isDown = false;
+            let startX;
+            let startTranslateX;
 
-                updateButtons();
+            const handleTouchStart = (e) => {
+                stopAnimation();
+                isDown = true;
+                startX = e.touches[0].pageX;
+                startTranslateX = currentTranslateX;
+                track.style.transition = 'none'; // Disable transition for instant feedback
             };
 
-            prevBtn.addEventListener('click', () => moveScroller(1));
-            nextBtn.addEventListener('click', () => moveScroller(-1));
+            const handleTouchEnd = () => {
+                isDown = false;
+                track.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)'; // Re-enable transition
+                const visibleWidth = scroller.offsetWidth;
+                const scrollableWidth = track.scrollWidth / 2;
+                const maxScroll = scrollableWidth - visibleWidth;
+                if (currentTranslateX > 0) currentTranslateX = 0;
+                if (currentTranslateX < -maxScroll) currentTranslateX = -maxScroll;
+                updateScrollState();
+            };
 
-            // Initial button state
-            updateButtons();
-            window.addEventListener('resize', updateButtons);
+            const handleTouchMove = (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.touches[0].pageX;
+                const walk = x - startX;
+                currentTranslateX = startTranslateX + walk;
+                track.style.transform = `translateX(${currentTranslateX}px)`;
+            };
+
+            scroller.addEventListener('touchstart', handleTouchStart);
+            scroller.addEventListener('touchend', handleTouchEnd);
+            scroller.addEventListener('touchcancel', handleTouchEnd);
+            scroller.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+            updateScrollState();
+            window.addEventListener('resize', () => {
+                const visibleWidth = scroller.offsetWidth;
+                const scrollableWidth = track.scrollWidth / 2;
+                const maxScroll = scrollableWidth - visibleWidth;
+                if (currentTranslateX < -maxScroll) {
+                    currentTranslateX = -maxScroll;
+                }
+                updateScrollState();
+            });
         });
     }
     
@@ -732,7 +781,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function initThemeSwitcher() {
-        // MODIFIED: Reordered themes as requested
         const themes = ['dark-gold', 'dark-mint', 'dark-azure', 'light-gold', 'light-mint', 'light-azure'];
         const themeCycleBtn = document.getElementById('theme-cycle-btn');
         let currentThemeIndex = 2; // Default to dark-azure
