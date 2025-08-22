@@ -16,27 +16,47 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Seaweed+Script&family=Yesteryear&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --color-primary: #0ea5e9; --color-secondary: #6366f1; --color-bg: #0c1425; --color-surface: #151c2e; --color-text: #e2e8f0; --color-text-muted: #94a3b8; --color-border: rgba(226, 232, 240, 0.1); --color-grid: rgba(226, 232, 240, 0.04); --color-glow1: #0ea5e9; --color-glow2: #6366f1; --color-shadow: rgba(0,0,0,0.3);
+            --color-primary: #38bdf8; --color-secondary: #818cf8; --color-bg: #02030c; --color-surface: #111827; --color-text: #e2e8f0; --color-text-muted: #94a3b8; --color-border: rgba(226, 232, 240, 0.1); --color-grid: rgba(226, 232, 240, 0.04); --color-glow1: #38bdf8; --color-glow2: #818cf8; --color-shadow: rgba(0,0,0,0.3);
         }
-        [data-theme="dark-gold"]{--color-primary:#f5d100;--color-secondary:#ff8d00;--color-bg:#050505;--color-surface:#111111;--color-text:#f0f0f0;--color-text-muted:#a0a0a0;--color-border:rgba(255,255,255,0.08);--color-grid:rgba(255,255,255,0.04);--color-glow1:#f5d100;--color-glow2:#ff8d00;--color-shadow:rgba(0,0,0,0.25)}
-        [data-theme="dark-mint"]{--color-primary:#10b981;--color-secondary:#2dd4bf;--color-bg:#0a1814;--color-surface:#11201c;--color-text:#e5e7eb;--color-text-muted:#9ca3af;--color-border:rgba(255,255,255,0.08);--color-grid:rgba(255,255,255,0.04);--color-glow1:#10b981;--color-glow2:#2dd4bf;--color-shadow:rgba(0,0,0,0.25)}
-        [data-theme="dark-azure"]{--color-primary:#0ea5e9;--color-secondary:#6366f1;--color-bg:#0c1425;--color-surface:#151c2e;--color-text:#e2e8f0;--color-text-muted:#94a3b8;--color-border:rgba(226, 232, 240,0.1);--color-grid:rgba(226, 232, 240,0.04);--color-glow1:#0ea5e9;--color-glow2:#6366f1;--color-shadow:rgba(0,0,0,0.3)}
-        [data-theme="light-gold"]{--color-primary:#D97706;--color-secondary:#F59E0B;--color-bg:#f5f5f5;--color-surface:#ffffff;--color-text:#1f2937;--color-text-muted:#6b7280;--color-border:rgba(0,0,0,0.08);--color-grid:rgba(0,0,0,0.04);--color-glow1:#D97706;--color-glow2:#F59E0B;--color-shadow:rgba(0,0,0,0.1)}
-        [data-theme="light-mint"]{--color-primary:#059669;--color-secondary:#14b8a6;--color-bg:#f5f5f5;--color-surface:#ffffff;--color-text:#1f2937;--color-text-muted:#6b7280;--color-border:rgba(0,0,0,0.08);--color-grid:rgba(0,0,0,0.04);--color-glow1:#059669;--color-glow2:#14b8a6;--color-shadow:rgba(0,0,0,0.1)}
-        [data-theme="light-azure"]{--color-primary:#0284c7;--color-secondary:#4f46e5;--color-bg:#f5f5f5;--color-surface:#ffffff;--color-text:#1e293b;--color-text-muted:#64748b;--color-border:rgba(0,0,0,0.08);--color-grid:rgba(0,0,0,0.04);--color-glow1:#0284c7;--color-glow2:#4f46e5;--color-shadow:rgba(0,0,0,0.1)}
+        [data-theme="dark-gold"]{--color-primary:#facc15;--color-secondary:#fb923c;--color-bg:#020202;--color-surface:#0d0d0d;--color-text:#f0f0f0;--color-text-muted:#a0a0a0;--color-border:rgba(255,255,255,0.08);--color-grid:rgba(255,255,255,0.04);--color-glow1:#facc15;--color-glow2:#fb923c;--color-shadow:rgba(0,0,0,0.25)}
+        [data-theme="dark-mint"]{--color-primary:#34d399;--color-secondary:#2dd4bf;--color-bg:#040d0a;--color-surface:#0a1412;--color-text:#e5e7eb;--color-text-muted:#9ca3af;--color-border:rgba(255,255,255,0.08);--color-grid:rgba(255,255,255,0.04);--color-glow1:#34d399;--color-glow2:#2dd4bf;--color-shadow:rgba(0,0,0,0.25)}
+        [data-theme="dark-azure"]{--color-primary:#38bdf8;--color-secondary:#818cf8;--color-bg:#02030c;--color-surface:#111827;--color-text:#e2e8f0;--color-text-muted:#94a3b8;--color-border:rgba(226, 232, 240,0.1);--color-grid:rgba(226, 232, 240,0.04);--color-glow1:#38bdf8;--color-glow2:#818cf8;--color-shadow:rgba(0,0,0,0.3)}
+        [data-theme="light-gold"]{--color-primary:#f59e0b;--color-secondary:#ea580c;--color-bg:#fdfcf9;--color-surface:#ffffff;--color-text:#1f2937;--color-text-muted:#6b7280;--color-border:rgba(0,0,0,0.08);--color-grid:rgba(0,0,0,0.04);--color-glow1:#f59e0b;--color-glow2:#ea580c;--color-shadow:rgba(0,0,0,0.1)}
+        [data-theme="light-mint"]{--color-primary:#10b981;--color-secondary:#2dd4bf;--color-bg:#f0fdfa;--color-surface:#ffffff;--color-text:#1f2937;--color-text-muted:#6b7280;--color-border:rgba(0,0,0,0.08);--color-grid:rgba(0,0,0,0.04);--color-glow1:#10b981;--color-glow2:#2dd4bf;--color-shadow:rgba(0,0,0,0.1)}
+        [data-theme="light-azure"]{--color-primary:#0ea5e9;--color-secondary:#6366f1;--color-bg:#f8fafc;--color-surface:#ffffff;--color-text:#1e293b;--color-text-muted:#64748b;--color-border:rgba(0,0,0,0.08);--color-grid:rgba(0,0,0,0.04);--color-glow1:#0ea5e9;--color-glow2:#6366f1;--color-shadow:rgba(0,0,0,0.1)}
         
         html { scroll-behavior: smooth; }
-        body { font-family: 'Space Grotesk', sans-serif; background-color: var(--color-bg); color: var(--color-text); transition: background-color 0.5s ease, color 0.5s ease; cursor: none; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--color-bg); color: var(--color-text); transition: background-color 0.5s ease, color 0.5s ease; cursor: none; }
         ::selection { background-color: var(--color-primary); color: var(--color-bg); }
         body::-webkit-scrollbar { display: none; }
         body { -ms-overflow-style: none; scrollbar-width: none; }
-        h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--color-text); }
+        h1, h2, h3, h4, h5, h6 { font-weight: 800; color: var(--color-text); }
         p { font-weight: 400; }
         
+        .font-combo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.25em;
+        }
+        
+        .font-handwritten {
+            font-family: 'Yesteryear', cursive;
+            font-weight: 400;
+            font-size: 1.5em;
+            line-height: 1.3;
+        }
+        h1 .font-handwritten {
+             font-size: 1.2em;
+        }
+        .text-accent { color: var(--color-primary); }
+
         :is(a,button,input,textarea,[tabindex]:not([tabindex="-1"])):focus-visible {
             outline: none;
             box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 35%, transparent);
@@ -136,6 +156,21 @@
 
         #projects .scroller-item { width: clamp(320px, 30vw, 400px); }
         #cks .scroller-item { width: clamp(320px, 40vw, 450px); }
+        
+        .touch-device .scroller {
+            overflow-x: auto;
+            -webkit-mask-image: none;
+            mask-image: none;
+            cursor: auto;
+            -webkit-overflow-scrolling: touch; /* Momentum scrolling for iOS */
+            scrollbar-width: none; /* For Firefox */
+        }
+        .touch-device .scroller::-webkit-scrollbar {
+            display: none; /* For Chrome, Safari, and Opera */
+        }
+        .touch-device .scroller__track {
+            will-change: auto; /* No need to optimize transform on mobile */
+        }
         
         .scroller-btn {
             position: absolute; top: 50%; z-index: 10;
@@ -253,8 +288,8 @@
 
     <main class="container mx-auto px-6 pt-32 md:pt-40">
         <section id="home" class="text-center py-8 md:py-12">
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-4 animate-on-scroll">
-                I'm Gurpreet Insha, a Designer <br> ready to <span class="gradient-text">elevate your brand.</span>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-normal mb-4 animate-on-scroll">
+                My Designs Are Made to<br><span class="font-handwritten gradient-text">Stop Scrolling.</span>
             </h1>
             <p class="text-lg md:text-xl max-w-3xl mx-auto mb-10 animate-on-scroll" style="transition-delay: 150ms; color: var(--color-text-muted);">
                 I craft compelling visuals that capture attention and help businesses connect with their audience.
@@ -292,7 +327,7 @@
 
         <section id="services">
              <div class="section-container">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll">What I Do</h2>
+                <h2 class="font-combo text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll"><span>What I</span><span class="font-handwritten text-accent">Do</span></h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 stagger-children">
                     <div class="card p-8 text-center rounded-2xl animate-on-scroll h-full">
                         <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full" style="background-color: color-mix(in srgb, var(--color-primary) 15%, transparent);"><svg class="h-8 w-8" style="color: var(--color-primary);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.539 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.539-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg></div>
@@ -344,7 +379,7 @@
         
         <section id="process">
             <div class="section-container">
-                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-20 animate-on-scroll">My Creative Process</h2>
+                 <h2 class="font-combo text-3xl md:text-4xl font-bold text-center mb-20 animate-on-scroll"><span>My Creative</span><span class="font-handwritten text-accent">Process</span></h2>
                  <div class="relative max-w-4xl mx-auto">
                     <div id="process-line" class="animate-on-scroll absolute left-[1.125rem] md:left-1/2 top-0 bottom-0 w-0.5 bg-[var(--color-border)] -translate-x-1/2"></div>
                     <div class="stagger-children">
@@ -382,7 +417,7 @@
         </section>
 
         <section id="cks" class="py-20">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll">What Clients Say</h2>
+            <h2 class="font-combo text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll"><span>What Clients</span><span class="font-handwritten text-accent">Say</span></h2>
             <div class="scroller-container">
                 <div class="scroller">
                     <div class="scroller__track" id="ck-container"></div>
@@ -399,7 +434,7 @@
         <section id="contact">
             <div class="section-container">
                 <div class="text-center mb-16">
-                     <h2 class="text-4xl md:text-5xl font-bold mb-4 animate-on-scroll">Let's Create Together</h2>
+                     <h2 class="font-combo text-4xl md:text-5xl font-bold mb-4 animate-on-scroll"><span>Let's Create</span><span class="font-handwritten text-accent">Together</span></h2>
                      <p class="text-lg max-w-3xl mx-auto animate-on-scroll" style="transition-delay: 150ms; color: var(--color-text-muted);">I'm currently available for new freelance projects. Have an idea you'd like to discuss? Feel free to reach out. I look forward to hearing from you!</p>
                 </div>
                 
@@ -419,7 +454,7 @@
                             </div>
                              <div class="flex items-start space-x-4 group">
                                 <div class="mt-1 flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] group-hover:border-[var(--color-primary)] transition-colors">
-                                   <svg class="w-5 h-5 text-[var(--color-text-muted)] group-hover:text-[var(--color-primary)] transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.482l.272.272a2.25 2.25 0 003.182 0l.272-.272A9.03 9.03 0 0012 20.25zM12 12a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" /></svg>
+                                   <svg class="w-5 h-5 text-[var(--color-text-muted)] group-hover:text-[var(--color-primary)] transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
                                 </div>
                                 <div>
                                     <h4 class="font-semibold text-lg" style="color: var(--color-text);">Location</h4>
@@ -504,45 +539,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const body = document.body;
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
+    // === FIX: Restored the correct, full image URLs ===
     const projectData = [
         { id: 1, category: "social", imgSrc: "https://i.ibb.co/B5CC8pcT/Whats-App-Image-2025-08-13-at-21-05-57-c1f93371.jpg.jpg", title: "YouTube Thumbnail Design", desc: "I've designed dozens of eye-catching thumbnails for popular YouTube creators to boost their clicks.", link: "#" },
+        { id: 7, category: "branding print", imgSrc: "https://i.ibb.co/wZXBTPNJ/gt650.jpg", title: "Motorbike Ad Concept", desc: "A dynamic commercial wallpaper concept designed as a personal project to explore motion and product advertising.", link: "#" },
         { id: 2, category: "branding", imgSrc: "https://i.ibb.co/SDcBdVZD/Whats-App-Image-2025-08-19-at-22-24-07-a93b95cc.jpg", title: "Creative Brand Logos", desc: "I create meaningful logos of all types, from wordmarks to emblems, to represent your brand's core values.", link: "#" },
         { id: 3, category: "branding social", imgSrc: "https://i.ibb.co/v45bWYt9/image.png", title: "Supplement Brand Banner", desc: "Created a stunning banner to advertise a brand's new line of protein powder.", link: "#" },
         { id: 4, category: "branding print", imgSrc: "https://i.ibb.co/WvqXnMpg/Pink-and-White-Healthy-Drinks-Facebook-Story-Ads.jpg", title: "Energy Drink Can Design", desc: "Developed a vibrant and energetic can design as part of a competitive branding project.", link: "#" },
         { id: 5, category: "ui-ux", imgSrc: "https://i.ibb.co/WWBk102n/Whats-App-Image-2025-08-19-at-23-07-19-8a97194d.jpg", title: "Portfolio Website UI", desc: "A sleek and modern user interface designed for a creative portfolio website.", link: "#" },
-        { id: 6, category: "branding print", imgSrc: "https://i.ibb.co/b5qZRn4D/Whats-App-Image-2025-08-08-at-23-26-58-b7fd8ac9.jpg", title: "Book Cover Design", desc: "Designed a compelling book cover meant to capture attention on a crowded shelf and boost sales.", link: "#" },
-        { id: 7, category: "social", imgSrc: "https://i.ibb.co/B5CC8pcT/Whats-App-Image-2025-08-13-at-21-05-57-c1f93371.jpg.jpg", title: "YouTube Thumbnail Design", desc: "I've designed dozens of eye-catching thumbnails for popular YouTube creators to boost their clicks.", link: "#" },
-        { id: 8, category: "branding", imgSrc: "https://i.ibb.co/SDcBdVZD/Whats-App-Image-2025-08-19-at-22-24-07-a93b95cc.jpg", title: "Creative Brand Logos", desc: "I create meaningful logos of all types, from wordmarks to emblems, to represent your brand's core values.", link: "#" },
-        { id: 9, category: "branding social", imgSrc: "https://i.ibb.co/v45bWYt9/image.png", title: "Supplement Brand Banner", desc: "Created a stunning banner to advertise a brand's new line of protein powder.", link: "#" },
-        { id: 10, category: "branding print", imgSrc: "https://i.ibb.co/WvqXnMpg/Pink-and-White-Healthy-Drinks-Facebook-Story-Ads.jpg", title: "Energy Drink Can Design", desc: "Developed a vibrant and energetic can design as part of a competitive branding project.", link: "#" },
-        { id: 11, category: "ui-ux", imgSrc: "https://i.ibb.co/WWBk102n/Whats-App-Image-2025-08-19-at-23-07-19-8a97194d.jpg", title: "Portfolio Website UI", desc: "A sleek and modern user interface designed for a creative portfolio website.", link: "#" },
-        { id: 12, category: "branding print", imgSrc: "https://i.ibb.co/b5qZRn4D/Whats-App-Image-2025-08-08-at-23-26-58-b7fd8ac9.jpg", title: "Book Cover Design", desc: "Designed a compelling book cover meant to capture attention on a crowded shelf and boost sales.", link: "#" },
-        { id: 13, category: "social", imgSrc: "https://i.ibb.co/B5CC8pcT/Whats-App-Image-2025-08-13-at-21-05-57-c1f93371.jpg.jpg", title: "YouTube Thumbnail Design", desc: "I've designed dozens of eye-catching thumbnails for popular YouTube creators to boost their clicks.", link: "#" },
-        { id: 14, category: "branding", imgSrc: "https://i.ibb.co/SDcBdVZD/Whats-App-Image-2025-08-19-at-22-24-07-a93b95cc.jpg", title: "Creative Brand Logos", desc: "I create meaningful logos of all types, from wordmarks to emblems, to represent your brand's core values.", link: "#" },
-        { id: 15, category: "branding social", imgSrc: "https://i.ibb.co/v45bWYt9/image.png", title: "Supplement Brand Banner", desc: "Created a stunning banner to advertise a brand's new line of protein powder.", link: "#" },
-        { id: 16, category: "branding print", imgSrc: "https://i.ibb.co/WvqXnMpg/Pink-and-White-Healthy-Drinks-Facebook-Story-Ads.jpg", title: "Energy Drink Can Design", desc: "Developed a vibrant and energetic can design as part of a competitive branding project.", link: "#" },
-        { id: 17, category: "ui-ux", imgSrc: "https://i.ibb.co/WWBk102n/Whats-App-Image-2025-08-19-at-23-07-19-8a97194d.jpg", title: "Portfolio Website UI", desc: "A sleek and modern user interface designed for a creative portfolio website.", link: "#" },
-        { id: 18, category: "branding print", imgSrc: "https://i.ibb.co/b5qZRn4D/Whats-App-Image-2025-08-08-at-23-26-58-b7fd8ac9.jpg", title: "Book Cover Design", desc: "Designed a compelling book cover meant to capture attention on a crowded shelf and boost sales.", link: "#" },
+        { id: 6, category: "branding print", imgSrc: "https://i.ibb.co/b5qZRn4D/Whats-App-Image-2025-08-08-at-23-26-58-b7fd8ac9.jpg", title: "Book Cover Design", desc: "Designed a compelling book cover meant to capture attention on a crowded shelf and boost sales.", link: "#" }
     ];
     
-const ckData = [
-    { text: "Working with Gurpreet is like working with my own brother. He understands every single point of my idea and brings it to life perfectly.", author: "- Abhi Garg, Business Owner" },
-    { text: "Working with Gurpreet was a fantastic experience. He delivered a superb logo and banner, and I'm thrilled with the outcome.", author: "- Ashutosh Chaudhary, YouTuber" },
-    { text: "I had a great experience with Gurpreet. The final design was beyond my expectations. He was professional, listened to my feedback, and delivered a great result. Looking forward to working with him again.", author: "- Priyank Tyagi, Fitness Influencer" },
-    { text: "Gurpreet's thumbnails and banners are amazing. Working with him has been my best experience, and he always delivers top-quality work.", author: "- Aditya Jain, YouTuber" },
-
-    { text: "Working with Gurpreet is like working with my own brother. He understands every single point of my idea and brings it to life perfectly.", author: "- Abhi Garg, Business Owner" },
-    { text: "Working with Gurpreet was a fantastic experience. He delivered a superb logo and banner, and I'm thrilled with the outcome.", author: "- Ashutosh Chaudhary, YouTuber" },
-    { text: "I had a great experience with Gurpreet. The final design was beyond my expectations. He was professional, listened to my feedback, and delivered a great result. Looking forward to working with him again.", author: "- Priyank Tyagi, Fitness Influencer" },
-    { text: "Gurpreet's thumbnails and banners are amazing. Working with him has been my best experience, and he always delivers top-quality work.", author: "- Aditya Jain, YouTuber" },
-
-    { text: "Working with Gurpreet is like working with my own brother. He understands every single point of my idea and brings it to life perfectly.", author: "- Abhi Garg, Business Owner" },
-    { text: "Working with Gurpreet was a fantastic experience. He delivered a superb logo and banner, and I'm thrilled with the outcome.", author: "- Ashutosh Chaudhary, YouTuber" },
-    { text: "I had a great experience with Gurpreet. The final design was beyond my expectations. He was professional, listened to my feedback, and delivered a great result. Looking forward to working with him again.", author: "- Priyank Tyagi, Fitness Influencer" },
-    { text: "Gurpreet's thumbnails and banners are amazing. Working with him has been my best experience, and he always delivers top-quality work.", author: "- Aditya Jain, YouTuber" }
-];
+    const ckData = [
+        { text: "Working with Gurpreet is like working with my own brother. He understands every single point of my idea and brings it to life perfectly.", author: "- Abhi Garg, Business Owner" },
+        { text: "Working with Gurpreet was a fantastic experience. He delivered a superb logo and banner, and I'm thrilled with the outcome.", author: "- Ashutosh Chaudhary, YouTuber" },
+        { text: "I had a great experience with Gurpreet. The final design was beyond my expectations. He was professional, listened to my feedback, and delivered a great result. Looking forward to working with him again.", author: "- Priyank Tyagi, Fitness Influencer" },
+        { text: "Gurpreet's thumbnails and banners are amazing. Working with him has been my best experience, and he always delivers top-quality work.", author: "- Aditya Jain, YouTuber" }
+    ];
 
     function initializeApp() {
+        if (isTouchDevice) {
+            body.classList.add('touch-device');
+        }
+
         populateProjects(projectData);
         populatecks();
         initPreloader();
@@ -554,9 +573,9 @@ const ckData = [
         initThemeSwitcher();
         initReadingFocus();
         initLightbox();
-        initAdvancedScrollers();
 
         if (!isTouchDevice) {
+            initAdvancedScrollers();
             initCustomCursor();
             initLiquidGlow();
         }
@@ -566,7 +585,8 @@ const ckData = [
         const container = document.getElementById('project-grid');
         if (!container) return;
         const createHtml = (items, isHidden = false) => {
-            return items.map(p => `
+            return items.map(p => {
+                return `
                 <div class="scroller-item" ${isHidden ? 'aria-hidden="true"' : ''}>
                     <div class="card rounded-2xl overflow-hidden h-full group">
                          <a href="${p.link}" data-lightbox-src="${p.imgSrc}" class="lightbox-trigger block overflow-hidden">
@@ -574,13 +594,17 @@ const ckData = [
                         </a>
                         <div class="p-6">
                             <h4 class="text-2xl font-bold mb-2">${p.title}</h4>
-                            <p class="text-sm font-normal mb-4" style="color: var(--color-text-muted);">${p.desc}</p>
+                            <p class="text-sm font-light mb-4" style="color: var(--color-text-muted);">${p.desc}</p>
                             <a href="${p.link}" data-lightbox-src="${p.imgSrc}" class="lightbox-trigger font-semibold hover:underline" style="color: var(--color-primary);">Let me see &rarr;</a>
                         </div>
                     </div>
-                </div>`).join('');
+                </div>`;
+            }).join('');
         };
-        container.innerHTML = createHtml(data) + createHtml(data, true);
+        container.innerHTML = createHtml(data);
+        if (!isTouchDevice) {
+            container.innerHTML += createHtml(data, true);
+        }
     }
     
     function populatecks() {
@@ -595,7 +619,10 @@ const ckData = [
                     </div>
                 </div>`).join('');
         };
-        container.innerHTML = createHtml(ckData) + createHtml(ckData, true);
+        container.innerHTML = createHtml(ckData);
+        if (!isTouchDevice) {
+            container.innerHTML += createHtml(ckData, true);
+        }
     }
     
     function initAdvancedScrollers() {
@@ -606,49 +633,23 @@ const ckData = [
             const nextBtn = container.querySelector('.scroller-btn--next');
             if (!scroller || !track) return;
 
-            let state = {
-                isDragging: false,
-                isUserInteracting: false,
-                startX: 0,
-                currentX: 0,
-                velocity: 0,
-                targetX: null,
-                rafId: null,
-            };
-            
+            let state = { isDragging: false, isUserInteracting: false, startX: 0, currentX: 0, velocity: 0, targetX: null, rafId: null, };
             const autoScrollSpeed = 0.2;
-            const friction = 0.92;
+            const friction = 0.95; 
             let userInteractionTimeout;
 
             function update() {
-                // Apply auto-scroll only if not user-controlled
-                if (!state.isUserInteracting && state.targetX === null) {
-                    state.currentX -= autoScrollSpeed;
-                }
-
-                // Smoothly move towards a target position (for button clicks)
+                if (!state.isUserInteracting && state.targetX === null) { state.currentX -= autoScrollSpeed; }
                 if (state.targetX !== null) {
                     const diff = state.targetX - state.currentX;
                     state.velocity = diff * 0.1;
-                    if (Math.abs(diff) < 1) {
-                        state.currentX = state.targetX;
-                        state.targetX = null;
-                    }
+                    if (Math.abs(diff) < 1) { state.currentX = state.targetX; state.targetX = null; }
                 }
-                
-                // Apply friction-based coasting
-                if (Math.abs(state.velocity) > 0.1) {
-                    state.currentX += state.velocity;
-                    state.velocity *= friction;
-                } else if (!state.isDragging && state.targetX === null) {
-                    state.velocity = 0;
-                }
-
-                // Infinite scroll boundary logic
+                if (Math.abs(state.velocity) > 0.1) { state.currentX += state.velocity; state.velocity *= friction; } 
+                else if (!state.isDragging && state.targetX === null) { state.velocity = 0; }
                 const boundary = track.scrollWidth / 2;
                 if (state.currentX < -boundary) state.currentX += boundary;
                 if (state.currentX > 0) state.currentX -= boundary;
-                
                 track.style.transform = `translateX(${state.currentX}px)`;
                 state.rafId = requestAnimationFrame(update);
             }
@@ -656,11 +657,7 @@ const ckData = [
             function setUserInteraction(interacting) {
                 state.isUserInteracting = interacting;
                 clearTimeout(userInteractionTimeout);
-                if (!interacting) {
-                    userInteractionTimeout = setTimeout(() => {
-                        state.isUserInteracting = false;
-                    }, 3000);
-                }
+                if (!interacting) { userInteractionTimeout = setTimeout(() => { state.isUserInteracting = false; }, 3000); }
             }
 
             function startDrag(x) {
@@ -672,10 +669,7 @@ const ckData = [
             }
 
             function endDrag() {
-                if(state.isDragging) {
-                    state.isDragging = false;
-                    setUserInteraction(false);
-                }
+                if(state.isDragging) { state.isDragging = false; setUserInteraction(false); }
             }
 
             function onDrag(x) {
@@ -687,21 +681,16 @@ const ckData = [
             
             function onButtonClick(direction) {
                  setUserInteraction(true);
-                 state.targetX = null; // Clear any previous target
+                 state.targetX = null;
                  const itemWidth = track.querySelector('.scroller-item').offsetWidth;
-                 const numItems = track.children.length / 2; // Since content is duplicated
+                 const numItems = track.children.length / 2;
                  const currentItemIndex = Math.round(-state.currentX / itemWidth);
-                 
                  let targetItemIndex = currentItemIndex + direction;
-
-                 // Clamp to keep it simple, the infinite loop will handle the rest
                  targetItemIndex = Math.max(0, Math.min(numItems - 1, targetItemIndex));
-
                  state.targetX = -targetItemIndex * itemWidth;
-                 setUserInteraction(false); // Allow timeout to resume auto-scroll
+                 setUserInteraction(false);
             }
 
-            // Event Listeners
             scroller.addEventListener('mouseenter', () => setUserInteraction(true));
             scroller.addEventListener('mouseleave', () => { if(!state.isDragging) setUserInteraction(false); });
             
@@ -714,12 +703,9 @@ const ckData = [
             window.addEventListener('mousemove', (e) => onDrag(e.pageX));
             window.addEventListener('mouseup', endDrag);
             window.addEventListener('mouseleave', endDrag);
-            
             scroller.addEventListener('touchstart', (e) => startDrag(e.touches[0].pageX), { passive: true });
             window.addEventListener('touchmove', (e) => { if(state.isDragging) onDrag(e.touches[0].pageX); }, { passive: true });
             window.addEventListener('touchend', endDrag);
-
-            // Start the animation loop
             state.rafId = requestAnimationFrame(update);
         });
     }
@@ -749,17 +735,8 @@ const ckData = [
             }
         });
         
-        lightboxOverlay.addEventListener('click', function(e) {
-            if (e.target === lightboxOverlay) {
-                closeLightbox();
-            }
-        });
-        
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && body.classList.contains('lightbox-open')) {
-                closeLightbox();
-            }
-        });
+        lightboxOverlay.addEventListener('click', function(e) { if (e.target === lightboxOverlay) { closeLightbox(); } });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && body.classList.contains('lightbox-open')) { closeLightbox(); } });
     }
 
     function initReadingFocus() {
@@ -835,8 +812,10 @@ const ckData = [
             const filterValue = button.dataset.filter;
             const filteredData = filterValue === '*' ? projectData : projectData.filter(p => p.category.includes(filterValue));
             populateProjects(filteredData);
-            // Re-initialize scroller functionality for the new content
-            initAdvancedScrollers();
+
+            if (!isTouchDevice) {
+                initAdvancedScrollers();
+            }
         });
     }
 
@@ -888,6 +867,3 @@ const ckData = [
 
 </body>
 </html>
-
-
-
