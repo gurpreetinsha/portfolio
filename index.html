@@ -1092,7 +1092,6 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 8, category: "social branding", imgSrc: "https://i.ibb.co/pjLcZ0qL/adi-ki-power-4-20251012-163312-0000-1.jpg", title: "Thumbnail for Client", desc: "Created thumbnail for youtuber and gain there CTR", link: "#" },
         { id: 9, category: "social branding", imgSrc: "https://i.ibb.co/MxYFzvMQ/bina-permission-entry-karli-20250928-150039-0000.jpg", title: "Thumbnail for Client", desc: "Created thumbnail for youtuber and gain there CTR", link: "#" },
         { id: 10, category: "social branding", imgSrc: "https://i.ibb.co/qLncKk1s/college-20251019-144025-0000.jpg", title: "Thumbnail for Client", desc: "Created thumbnail for youtuber and gain there CTR", link: "#" },
-        { id: 11, category: "social branding", imgSrc: "https://i.ibb.co/DZppscG/Happy-Diwali-20251019-141145-0000.jpg", title: "Thumbnail for Client", desc: "Created thumbnail for youtuber and gain there CTR", link: "#" },
         { id: 12, category: "social branding", imgSrc: "https://i.ibb.co/k2zBQKx3/Tanki-fut-gyi-20250930-220410-0000.jpg", title: "Thumbnail for Client", desc: "Created thumbnail for youtuber and gain there CTR", link: "#" },
         { id: 13, category: "social branding", imgSrc: "https://i.ibb.co/1CBvrdy/tera-bhai-seedhe-judge-20251006-185140-0000.jpg", title: "Thumbnail for Client", desc: "Created thumbnail for youtuber and gain there CTR", link: "#" },
         { id: 14, category: "social branding", imgSrc: "https://i.ibb.co/MxX62L4D/UNDER-20250901-133446-0000.jpg", title: "Thumbnail for Client", desc: "Created thumbnail for youtuber and gain there CTR", link: "#" },
@@ -1547,24 +1546,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     
 
+// ...existing code...
     function initThemeSwitcher() {
-
         const themes = ['dark-gold', 'dark-mint', 'dark-azure', 'light-gold', 'light-mint', 'light-azure'];
-
         const themeCycleBtn = document.getElementById('theme-cycle-btn');
-
-        let currentThemeIndex = 2; // Default to dark-azure
-
+        let currentThemeIndex = 4; // Default to light-mint (light lime)
         const applyTheme = (index) => { currentThemeIndex = index; root.dataset.theme = themes[index]; localStorage.setItem('portfolioThemeIndex', index); };
-
         themeCycleBtn.addEventListener('click', () => applyTheme((currentThemeIndex + 1) % themes.length));
-
         const savedIndex = parseInt(localStorage.getItem('portfolioThemeIndex'), 10);
-
-        applyTheme(isNaN(savedIndex) ? 2 : savedIndex);
-
+        applyTheme(isNaN(savedIndex) ? 4 : savedIndex);
     }
-
+// ...existing code...
 
 
     function initLiquidGlow() {
@@ -1777,4 +1769,5 @@ document.addEventListener('DOMContentLoaded', function() {
 </body>
 
 </html>
+
 
